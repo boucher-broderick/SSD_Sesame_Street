@@ -1,0 +1,21 @@
+
+
+<p-table [value]="test_array" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.age }}</td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<input type="text" pInputText [(ngModel)]="temp_name" placeholder="Name" />
+<input type="text" pInputText [(ngModel)]="temp_age" placeholder="Age"/>
+<p-button label="Add" (click)="add()"></p-button>
