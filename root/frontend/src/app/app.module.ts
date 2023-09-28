@@ -1,36 +1,38 @@
 
 
-import { NgModule } from '@angular/core';
+import { ApplicationModule, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 //components
 import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
-import { HomeComponent } from './components/home/home.component';
+import { SignInComponent } from './components/sign-in/sign-in.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { HomeModule } from './components/home/home.module';
+import { PrimengModule } from './shared/modules/primeng/primeng.module';
 
-//primeNG
-import { TableModule } from 'primeng/table';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
+
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    HomeComponent
+    SignInComponent,
+    SignUpComponent
+ ,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ButtonModule,
-    TableModule,
-    InputTextModule,
-    FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    HomeModule,
+    PrimengModule,
+    ApplicationModule
 
   ],
   providers: [],

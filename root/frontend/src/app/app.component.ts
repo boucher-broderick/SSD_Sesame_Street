@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  testPage : boolean = true;
+
   title = 'frontend';
+
+  constructor() { }
+
+  public onChangePage() {
+    this.testPage = !this.testPage;
+  }
+  
 }
