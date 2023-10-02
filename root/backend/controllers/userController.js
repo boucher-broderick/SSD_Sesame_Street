@@ -6,19 +6,6 @@ const User = require("../models/userModel");
 //@route POST /api/users/register
 //@access public
 const registerUser = expressAsyncHandler(async(req, res) =>{
-    const{username, email, password} = req.body;
-    if(!username || !email || !password){
-        res.status(400);
-        throw new Error("All fields are mandatory.");
-    }
-    if(userAvailable){
-        res.status(400);
-        throw new Error("User already registered.")
-    }
-
-    // Creating hash password
-    const hashedPassword = await bcrypt.hash(password, 10);
-    console.log("Hashed pass: ", hashedPassword);
     res.json({message: "Register user"});
 });
 //@desc Login user
