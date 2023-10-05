@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { HomeBodyComponent } from './home-body/home-body.component';
 import { HomeNavbarComponent } from './home-navbar/home-navbar.component';
 import { HomeComponent } from './home.component';
@@ -15,7 +15,8 @@ import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
   ],
   imports: [
     CommonModule,
-    PrimengModule
+    PrimengModule,
+    NgOptimizedImage
   ]
 })
 export class HomeModule { }

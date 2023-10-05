@@ -1,0 +1,36 @@
+.navbar {
+    width: 85%;
+    margin: auto;
+    padding: 35px 0;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+.navbar ul li::after {
+    content: "";
+    height: 3px;
+    width: 0;
+    background: orange;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+.navbar ul li:hover::after {
+    width: 100%;
+}
