@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
         required: [true, "Please input email address"],
         unique: [true, "Email address alreaady assocaited with another account"],
     },
-    password: {
+    password: { 
         type: String,
         required: [true, "Please input password"]
         
