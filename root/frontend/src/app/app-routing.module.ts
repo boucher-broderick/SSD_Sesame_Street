@@ -9,7 +9,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 const routes: Routes = [
   { 
     path: '', 
-    redirectTo: '/Home', 
+    redirectTo: '/home', 
     pathMatch: 'full'
   },
   { 
@@ -17,18 +17,20 @@ const routes: Routes = [
     component: TestComponent 
   },
   { 
-    path: 'Home', 
+    path: 'home', 
     component: HomeComponent 
   },
   {
-    path: 'SignIn',
+    path: 'sign-in',
     component: SignInComponent
   },
   {
-    path: 'SignUp',
+    path: 'sign-up',
     component: SignUpComponent
   },
-  { path: 'Application',  loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule) }
+  { 
+    path: 'application',  loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule) 
+  }
 ];
 
 @NgModule({
