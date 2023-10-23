@@ -1,6 +1,14 @@
 <div class="m-2">
-    <h3>Projects</h3>
-    <p-table [value]="projects" [columns]="columns" dataKey="id" editMode="row" >
+    <div class="header">
+        <h3>Projects</h3>
+        <div>
+            <button pButton>Chapters</button>
+            <button pButton>New</button>
+            <button pButton>Delete</button>
+        </div>
+    </div>
+
+    <p-table [value]="projects" [columns]="columns" dataKey="id" editMode="row" styleClass="p-datatable-striped p-datatable-gridlines p-datatable-sm">
         <ng-template pTemplate="header">
             <tr>
                 <th style="width:8em">Edit</th>
@@ -9,19 +17,19 @@
                         {{col.displayName}}
                     </th>
                 </ng-container>
-    
-    
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
-            <tr [pEditableRow]="rowData">
+            <tr [pEditableRow]="rowData" [pSelectableRow]="rowData" [class.p-highlight]="rowData.id === selectedProject.id" (click)="onSelect(rowData)">
                 <td style="text-align:center">
-                    <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)"></button>
-                    <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData)"></button>
-                    <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(rowData)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(rowData)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(rowData, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
+                    </div>
                 </td>
                 <ng-container *ngFor="let col of columns">
-                    <td *ngIf="col.hidden == false">
+                    <td *ngIf="col.hidden == false"  >
                         <p-cellEditor *ngIf="col.readonly == false">
                             <ng-template pTemplate="input">
                                 <input pInputText type="text" [(ngModel)]="rowData[col.columnName]" required>
@@ -35,8 +43,6 @@
                         </ng-container>
                     </td>
                 </ng-container>
-    
-              
         </ng-template>
     </p-table>
 </div>

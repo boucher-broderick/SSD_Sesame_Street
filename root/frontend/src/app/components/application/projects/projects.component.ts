@@ -11,6 +11,7 @@ export class ProjectsComponent{
 
   projects!: Project[];
   columns!: TableColumns[];
+  selectedProject!: Project;
 
 
   constructor(){ }
@@ -33,6 +34,12 @@ export class ProjectsComponent{
   }
 
 
+  onSelect(selected: Project){
+    if(this.selectedProject.id != selected.id){
+      this.selectedProject = selected;
+    }
+  }
+
   private getProjectDate(){
     this.projects =  [
       {
@@ -41,8 +48,23 @@ export class ProjectsComponent{
         author: "me",
         created: new Date(),
         description: "project1"
-      }
+      },
+      {
+        id:2,
+        name: "project2",
+        author: "me",
+        created: new Date(),
+        description: "project2"
+      },
+      {
+        id:3,
+        name: "project3",
+        author: "me",
+        created: new Date(),
+        description: "project3"
+      },
     ];
+    this.selectedProject = this.projects[0];
     this.columns = this.setColumns();
   }
 
@@ -68,7 +90,7 @@ export class ProjectsComponent{
     {
       columnName: "created",
       displayName: "Date Created",
-      hidden: false,
+      hidden: true,
       readonly: true
     },
     {
