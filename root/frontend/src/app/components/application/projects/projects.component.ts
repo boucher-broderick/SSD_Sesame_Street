@@ -12,7 +12,8 @@ export class ProjectsComponent{
   projects!: Project[];
   columns!: TableColumns[];
   selectedProject!: Project;
-
+  editing: boolean = false;
+  newProject: boolean = false;
 
   constructor(){ }
 
@@ -20,6 +21,17 @@ export class ProjectsComponent{
     this.getProjectDate();
   }
 
+  createProject(){
+    this.newProject = true;
+    var temp: Project ={
+      id:5,
+      name: "project",
+      author: "me",
+      created: new Date(),
+      description: "project"
+      
+    }
+  }
   
   onRowEditInit(project: Project){
     
