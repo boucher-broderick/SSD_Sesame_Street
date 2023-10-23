@@ -1,1 +1,42 @@
-<p>projects works!</p>
+<div class="m-2">
+    <h3>Projects</h3>
+    <p-table [value]="projects" [columns]="columns" dataKey="id" editMode="row" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:8em">Edit</th>
+                <ng-container *ngFor="let col of columns">
+                    <th *ngIf="col.hidden==false">
+                        {{col.displayName}}
+                    </th>
+                </ng-container>
+    
+    
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="rowData">
+                <td style="text-align:center">
+                    <button *ngIf="!editing" pButton type="button" pInitEditableRow icon="pi pi-pencil" class="ui-button-info" (click)="onRowEditInit(rowData)"></button>
+                    <button *ngIf="editing" pButton type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" (click)="onRowEditSave(rowData)"></button>
+                    <button *ngIf="editing" pButton type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger" (click)="onRowEditCancel(rowData, ri)"></button>
+                </td>
+                <ng-container *ngFor="let col of columns">
+                    <td *ngIf="col.hidden == false">
+                        <p-cellEditor *ngIf="col.readonly == false">
+                            <ng-template pTemplate="input">
+                                <input pInputText type="text" [(ngModel)]="rowData[col.columnName]" required>
+                            </ng-template>
+                            <ng-template pTemplate="output">
+                                {{rowData[col.columnName]}}
+                            </ng-template>
+                        </p-cellEditor>
+                        <ng-container *ngIf="col.readonly == true ">
+                            {{rowData[col.columnName]}}
+                        </ng-container>
+                    </td>
+                </ng-container>
+    
+              
+        </ng-template>
+    </p-table>
+</div>
