@@ -12,7 +12,6 @@ import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { HomeModule } from './components/home/home.module';
 import { PrimengModule } from './shared/modules/primeng/primeng.module';
-import { QuillModule } from 'ngx-quill';
 
 
 
