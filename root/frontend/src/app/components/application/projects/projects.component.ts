@@ -7,7 +7,7 @@ import { TableColumns } from 'src/app/models/table-columns';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent{
+export class ProjectsComponent {
 
   projects!: Project[];
   columns!: TableColumns[];
@@ -15,61 +15,62 @@ export class ProjectsComponent{
   editing: boolean = false;
   newProject: boolean = false;
 
-  constructor(){ }
+  constructor() { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.getProjectDate();
   }
 
-  createProject(){
+  createProject() {
     this.newProject = true;
-    var temp: Project ={
-      id:5,
+    var temp: Project = {
+      id: 5,
       name: "project",
       author: "me",
       created: new Date(),
       description: "project"
-      
     }
-  }
-  
-  onRowEditInit(project: Project){
-    
+    this.projects = [temp, ...this.projects];
+
   }
 
-  onRowEditSave(project: Project){
-    
+  onRowEditInit(project: Project) {
+
   }
 
-  onRowEditCancel(project: Project, index: number){
-  
+  onRowEditSave(project: Project) {
+
+  }
+
+  onRowEditCancel(project: Project, index: number) {
+
   }
 
 
-  onSelect(selected: Project){
-    if(this.selectedProject.id != selected.id){
+  onSelect(selected: Project) {
+    if (this.selectedProject.id != selected.id) {
       this.selectedProject = selected;
     }
   }
 
-  private getProjectDate(){
-    this.projects =  [
+  private getProjectDate() {
+    this.projects = [
       {
-        id:1,
+        id: 1,
         name: "project1",
         author: "me",
         created: new Date(),
         description: "project1"
       },
       {
-        id:2,
+        id: 2,
         name: "project2",
         author: "me",
         created: new Date(),
         description: "project2"
       },
       {
-        id:3,
+        id: 3,
         name: "project3",
         author: "me",
         created: new Date(),

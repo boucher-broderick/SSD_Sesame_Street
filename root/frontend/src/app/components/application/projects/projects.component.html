@@ -3,7 +3,7 @@
         <h3>Projects</h3>
         <div>
             <button pButton [disabled]="!selectedProject">Chapters</button>
-            <button pButton>New</button>
+            <button pButton (click)="createProject()">New</button>
             <button pButton>Delete</button>
         </div>
     </div>
