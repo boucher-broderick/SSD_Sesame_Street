@@ -1,0 +1,16 @@
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header button{
+    margin-left: .5rem;
+}
+
+.container{
+    margin: 1rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+

@@ -28,9 +28,7 @@ const routes: Routes = [
     path: 'sign-up',
     component: SignUpComponent
   },
-  { 
-    path: 'application',  loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule) 
-  }
+  { path: 'application',  loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule) }
 ];
 
 @NgModule({
