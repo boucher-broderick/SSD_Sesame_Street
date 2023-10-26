@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+    <title>Sign-in - StorytellerStudio</title>
+
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  
+  
+  <body>
+    <h1>
+      StorytellerStudio
+    </h1>
+     
+   <ul>
+  <li2><a href="#home"><img src="https://cdn.glitch.global/b9a75b23-446b-41bd-92bb-ac7aa49f98b2/StorytellerLogo.jpg?v=1697644998554" width="70px" > </a>
+ </li2>
+  <li><a href="#home">Home</a></li>
+  <li><a href="#stories">Stories</a></li>
+  <li><a href="#chapters">Chapters</a></li>
+  <li><a href="#shared">Shared</a></li>
+  <li style="float:right"><a class="active" href="#settings">Settings</a></li>
+</ul>
+
+    
+    <br>
+    
+<h2>
+   Settings
+    </h2>
+  <form action="/action_page.php">
+  <label for="uname">Change Username:</label>
+  <input type="text" id="uname" name="uname"><br><br>
+  <label type="password">Change Password:</label>
+  <input type="text" id="pword" name="pword"><br><br>
+  <label for="email">Change Email:   </label>
+  <input type="text" id="email" name="email"><br><br>
+  <input type="button"  value="Delete Account">
+  <input type="submit" value="Submit Changes">
+</form>
+        
+  <style>
+    ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+  li2 {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: #111;
+}    
+    </style>  
+
+
+  </body>
+</html>
+
