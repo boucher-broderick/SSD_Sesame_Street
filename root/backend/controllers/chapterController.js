@@ -2,11 +2,12 @@ const Chapter = require('../models/chapterModel');
 
 exports.addChapter = async (req, res) => {
   try {
-    const { title, content, } = req.body;
+    const { name, author, description, } = req.body;
 
     const newChapter = new Chapter({
-      title,
-      content,
+      name,
+      author,
+      description,
     });
 
     const savedChapter = await newChapter.save();
@@ -39,11 +40,11 @@ exports.editChapter = async (req, res) => {
   try {
     const chapterId = req.params.chapterId;
 
-    const { title, content,  } = req.body;
+    const { name, author, description, } = req.body;
 
     const updatedChapter = await Chapter.findByIdAndUpdate(
       chapterId,
-      { title, content, },
+      { name, author, description, },
       { new: true }
     );
 

@@ -2,15 +2,17 @@ const Project = require('../models/projectModel');
 
 exports.addProject = async (req, res) => {
   try {
-    const { title, description} = req.body;
-    
+    const { name, author, created, description, } = req.body;
+
     const newProject = new Project({
-      title,
+      name,
+      author,
+      created,
       description,
     });
 
     const savedProject = await newProject.save();
-    
+
     res.json(savedProject);
   } catch (err) {
     console.error(err);
@@ -39,11 +41,11 @@ exports.editProject = async (req, res) => {
   try {
     const projectId = req.params.projectId;
 
-    const { title, description, } = req.body;
+    const { name, author, created, description, } = req.body;
 
     const updatedProject = await Project.findByIdAndUpdate(
       projectId,
-      { title, description, },
+      { name, author, created, description, },
       { new: true }
     );
 

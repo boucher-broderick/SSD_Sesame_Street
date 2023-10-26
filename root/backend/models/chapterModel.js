@@ -1,11 +1,15 @@
 const mongoose = require('mongoose');
 
 const chapterSchema = new mongoose.Schema({
-  title: {
+  name: {
     type: String,
-    required: [true, 'Please provide a chapter title'],
+    required: [true, 'Please provide a chapter name'],
   },
-  content: {
+  author: {
+    type: String,
+    required: [true, 'Please provide chapter author'],
+  },
+  description: {
     type: String,
     required: [true, 'Please provide chapter description'],
   },
