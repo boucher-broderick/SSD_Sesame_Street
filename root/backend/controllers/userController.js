@@ -68,5 +68,23 @@ const currentUser = expressAsyncHandler(async(req, res) =>{
     res.json({message: "Current user"});
 });
 
+//@desc Delete user account
+//@route DELETE /api/users/delete
+//@access private
+const deleteUser = expressAsyncHandler(async(req, res) =>{
+    const userId = req.user.id;  // You'll get this from the validateToken middleware.
 
-module.exports = {registerUser, loginUser, currentUser};
+    const user = await User.findById(userId);
+
+    if (!user) {
+        return res.status(404).json({error: "User not found"});
+    }
+
+    await user.remove();
+
+    res.status(200).json({message: "User deleted successfully"});
+});
+
+
+
+module.exports = {registerUser, loginUser, currentUser, deleteUser};
