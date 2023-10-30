@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="https://glitch.com/favicon.ico" />
+
+
+    <title>StorytellerStudio Error404</title>
+        
+  </head>
+  <body>
+    
+    <h1 align="center">
+      ERROR 404
+    </h1>
+
+    <img src="https://cdn.glitch.global/c1a47f4f-cd8d-4fa5-90e2-dc0efda46cdf/7e44fc6c-2bdf-4268-9141-a930b3754b18.png?v=1698700161105" height="300" class="center">
+   <h2 align="center">
+    <a href ="insert home link here">
+ 
+      Return to Storyteller Studio
+  </a>
+         </h2>
+    
+    <style>
+    .center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+      h2{
+        color: black;
+      }
+      
+       a{
+        color: black;
+        text-decoration:none;
+         
+      }
+      
+      a:hover {
+    color: white;
+                }
+      
+   body{
+     background-color:#6B5173;
+     
+   }
+   
+    </style>
+  
+  
+  </body>
+</html>
