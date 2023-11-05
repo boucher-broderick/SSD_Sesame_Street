@@ -10,11 +10,10 @@ export class SignInComponent {
 
   constructor(private _router:Router) { }
 
-  public signIn(): void {
-    this._router.navigate(['Application']);
-  }
 
-  public backToHome(): void {
-    this._router.navigate(['']);
+  signIn(){
+    const stringValue = JSON.stringify(1);
+    sessionStorage.setItem("user", stringValue);
+    this._router.navigate(['application']);
   }
 }

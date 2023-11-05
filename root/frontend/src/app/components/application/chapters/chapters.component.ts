@@ -113,27 +113,36 @@ export class ChaptersComponent {
   }
 
   private getChaptersData() {
-    this.chapters = [
-      {
-        id: 1,
-        name: "Return of God",
-        author: "me",
-        description: "God Returns"
-      },
-      {
-        id: 2,
-        name: "Evil God",
-        author: "me",
-        description: "What the god is bad"
-      },
-      {
-        id: 3,
-        name: "Nice God",
-        author: "me",
-        description: "Nevermind he good"
-      },
-    ];
-    this.selectedChapter = this.chapters[0];
+
+    var item = sessionStorage.getItem("user");
+
+    if(item=="0"){
+      this.chapters = [];
+    }
+    else{
+      this.chapters = [
+        {
+          id: 1,
+          name: "Return of God",
+          author: "me",
+          description: "God Returns"
+        },
+        {
+          id: 2,
+          name: "Evil God",
+          author: "me",
+          description: "What the god is bad"
+        },
+        {
+          id: 3,
+          name: "Nice God",
+          author: "me",
+          description: "Nevermind he good"
+        },
+      ];
+      this.selectedChapter = this.chapters[0];
+    }
+
     this.columns = this.setColumns();
   }
 

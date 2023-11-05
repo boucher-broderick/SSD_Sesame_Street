@@ -1,10 +1,10 @@
 .content {
     width: 100%;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    text-align: center;
+    height:75%;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content h1 {
@@ -20,4 +20,11 @@
 
 .title-buttons button{
     margin: .5rem;
+}
+
+.container{
+    width: 50%;
+    height: 50%;
+    background-color: aliceblue;
+    border-radius: 20px;
 }

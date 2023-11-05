@@ -101,30 +101,39 @@ export class ProjectsComponent {
   }
 
   private getProjectDate() {
-    this.projects = [
-      {
-        id: 10,
-        name: "project1",
-        author: "me",
-        created: new Date(),
-        description: "project1"
-      },
-      {
-        id: 20,
-        name: "project2",
-        author: "me",
-        created: new Date(),
-        description: "project2"
-      },
-      {
-        id: 30,
-        name: "project3",
-        author: "me",
-        created: new Date(),
-        description: "project3"
-      },
-    ];
-    this.selectedProject = this.projects[0];
+    var item = sessionStorage.getItem("user");
+    console.log(item);
+
+    if(item != "0"){
+      this.projects = [
+        {
+          id: 10,
+          name: "project1",
+          author: "me",
+          created: new Date(),
+          description: "project1"
+        },
+        {
+          id: 20,
+          name: "project2",
+          author: "me",
+          created: new Date(),
+          description: "project2"
+        },
+        {
+          id: 30,
+          name: "project3",
+          author: "me",
+          created: new Date(),
+          description: "project3"
+        },
+      ];
+      this.selectedProject = this.projects[0];
+    }
+    else{
+      this.projects = [];
+    }
+
     this.columns = this.setColumns();
   }
 
