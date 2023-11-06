@@ -1,8 +1,8 @@
-import { Component, ContentChildrenDecorator } from '@angular/core';
+import { Component, ContentChildrenDecorator, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentService } from './content.service';
 import { Content } from 'src/app/models/content';
-//import Quill from 'Quill';
+import Quill from 'quill';
 
 @Component({
   selector: 'app-chapter-content',
@@ -11,6 +11,28 @@ import { Content } from 'src/app/models/content';
 })
 
 export class ChapterContentComponent {
+
+      ngAfterViewInit() {
+    const quill = new Quill('.editor-container', {
+      modules: {
+        toolbar: [
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["bold", "italic", "underline"],
+  [{ color: [] }, { background: [] }],
+  [{ script: "sub" }, { script: "super" }],
+  [{ align: [] }],
+  ["image", "blockquote", "code-block"],
+  ["clean"],
+]
+      },
+      placeholder: 'Write here...',
+      theme: 'snow',
+      debug: 'info'
+    });
+  }
+
     contentId!: string;
     projectId!: string;
     chapterId!: string;
