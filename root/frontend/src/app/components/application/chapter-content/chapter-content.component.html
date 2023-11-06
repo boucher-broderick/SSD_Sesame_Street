@@ -4,7 +4,7 @@
         <div style="margin-top: 20px;">
             <button pButton label="Projects List" style="margin-right: 20px;" (click)="redirectToProjects()"></button>
             <button pButton label="Chapters List" style="margin-right: 20px;" (click)="redirectToChapters()"></button>
-            <p-button label="Save"  [loading]="loading" ></p-button>
+            <p-button label="Save"  [loading]="loading" (click)="onSave()"></p-button>
         </div>
         
 </div>

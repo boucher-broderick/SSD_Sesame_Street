@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const chapterController = require('../controllers/chapterController');
 
-router.post('/chapters', chapterController.addChapter);
-router.delete('/chapters/:chapterId', chapterController.deleteChapter);
-router.put('/chapters/:chapterId', chapterController.editChapter);
+router.post('/addChapter', chapterController.addChapter);
+router.delete('/deleteChapter', chapterController.deleteChapter);
+router.put('/editChapter', chapterController.editChapter);
+router.get('/getChapters', chapterController.getChapters);
 
 module.exports = router;

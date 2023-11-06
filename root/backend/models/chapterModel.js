@@ -1,13 +1,17 @@
 const mongoose = require('mongoose');
 
 const chapterSchema = new mongoose.Schema({
+  projectId: {
+    type: String,
+    required: [true, 'Please provide a project id'],
+  },
+  chapterNumber: {
+    type: Number,
+    required: [true, 'Please provide a chapter number'],
+  },
   name: {
     type: String,
     required: [true, 'Please provide a chapter name'],
-  },
-  author: {
-    type: String,
-    required: [true, 'Please provide chapter author'],
   },
   description: {
     type: String,

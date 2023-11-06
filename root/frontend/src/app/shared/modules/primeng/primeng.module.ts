@@ -5,6 +5,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -16,7 +17,8 @@ import { PasswordModule } from 'primeng/password';
     TableModule,
     InputTextModule,
     FormsModule,
-    PasswordModule
+    PasswordModule,
+    MessagesModule
   ],
   exports: [  
     CommonModule,
@@ -24,7 +26,8 @@ import { PasswordModule } from 'primeng/password';
     TableModule,
     InputTextModule,
     FormsModule,
-    PasswordModule
+    PasswordModule,
+    MessagesModule
   ]
 })
 export class PrimengModule { }

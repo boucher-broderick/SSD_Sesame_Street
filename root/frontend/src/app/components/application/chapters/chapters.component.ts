@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Chapter } from 'src/app/models/chapter';
 import { TableColumns } from 'src/app/models/table-columns';
+import { ChaptersService } from './chapters.service';
 
 @Component({
   selector: 'app-chapters',
@@ -14,25 +15,29 @@ export class ChaptersComponent {
   chapters!: Chapter[];
   columns!: TableColumns[];
   selectedChapter!: Chapter;
-  public clonedProject: { [id: number]: Chapter } = {};
+  public clonedProject: { [chapterId: string]: Chapter } = {};
   editing: boolean = false;
   newChapter: boolean = false;
-
+  projectId!: string;
 
   @ViewChild(Table) private table!: Table;
 
-  constructor(private _router:Router) { }
+  constructor(private _router:Router, private chaptersService: ChaptersService) { }
 
   ngOnInit() {
+    var id = sessionStorage.getItem("projectId");
+    if(id) this.projectId= id.replace(/['"]+/g, '')
+    else this.projectId = '';
     this.getChaptersData();
   }
 
   createChapter() {
     this.newChapter = true;
     var temp: Chapter = {
-      id: this.getNextId(),
+      chapterId: "",
+      projectId: this.projectId,
+      chapterNumber: this.getNextNumber(),
       name: "chapter",
-      author: "me",
       description: "chapter"
     }
     this.chapters = [temp, ...this.chapters];
@@ -45,24 +50,43 @@ export class ChaptersComponent {
   onRowEditInit(chapter: Chapter) {
     this.selectedChapter = chapter;
     this.editing = true;
-    this.clonedProject[chapter.id]= {...chapter};
+    this.clonedProject[chapter.chapterId]= {...chapter};
   }
 
   onRowEditSave(chapter: Chapter) {
     if(this.newChapter){
-      // create new call to api
+      var body = {
+        projectId: chapter.projectId,
+        chapterNumber: chapter.chapterNumber,
+        name: chapter.name,
+        description: chapter.description
+      };
+      this.chaptersService.newChapter(body).subscribe((data)=>{
+        console.log(data);
+        if(data!= null){
+          this.chapters[0] = data;
+          this.selectedChapter = this.chapters[0];
+          this.chapters.sort( (a:any, b:any) => a.chapterNumber - b.chapterNumber);  
+          const stringValue = JSON.stringify(this.selectedChapter.chapterId);
+          sessionStorage.setItem("chapterId", stringValue);
+        }
+      })
     }
     else{
-      // save chapter call to api
+      this.chaptersService.editProject(chapter).subscribe((data)=>{
+        if(data!= null){
+          chapter = data;
+        }
+      })
     }
-    this.chapters.sort( (a, b) => a.id - b.id);
+    delete this.clonedProject[chapter.chapterId];
     this.newChapter = false;
     this.editing = false;
   }
 
   onRowEditCancel(chapter: Chapter, index: number) {
     if(this.newChapter){
-      this.chapters = this.chapters.filter( (data) => data.id != chapter.id)
+      this.chapters = this.chapters.filter( (data) => data.chapterId != chapter.chapterId)
       if(this.chapters.length > 0){
         this.selectedChapter = this.chapters[0];
       }
@@ -71,21 +95,28 @@ export class ChaptersComponent {
       }
     }
     else{
-      this.chapters[index] = this.clonedProject[chapter.id];
+      this.chapters[index] = this.clonedProject[chapter.chapterId];
     }
-    delete this.clonedProject[chapter.id];
+    delete this.clonedProject[chapter.chapterId];
     this.newChapter= false;
     this.editing = false;
   }
 
   onSelect(selected: Chapter) {
-    if (this.selectedChapter.id != selected.id && this.editing == false) {
+    if (this.selectedChapter.chapterId != selected.chapterId && this.editing == false) {
       this.selectedChapter = selected;
+      const stringValue = JSON.stringify(selected.chapterId);
+      sessionStorage.setItem("chapterId", stringValue);
     }
   }
 
   deleteProject(){
-    this.chapters = this.chapters.filter( (data) => data.id != this.selectedChapter.id);
+    if(this.editing == false){
+      this.chaptersService.deleteChapter(this.selectedChapter.chapterId).subscribe((data)=>{
+        console.log(data);
+      })
+    }
+    this.chapters = this.chapters.filter( (data) => data.chapterId != this.selectedChapter.chapterId);
     if(this.chapters.length > 0){
       this.selectedChapter = this.chapters[0];
       this.onRowReorder();
@@ -108,47 +139,31 @@ export class ChaptersComponent {
 
   onRowReorder(){
     var num : number = 1;
-    this.chapters.forEach( (chapter) => chapter.id = num++);
+    this.chapters.forEach( (chapter) => chapter.chapterNumber = num++);
     // call save function from api
   }
 
   private getChaptersData() {
+    this.chapters = [];
+    this.chaptersService.getChapters(this.projectId).subscribe((data)=>{
+      if(data){
+        this.chapters = data;
+        console.log(this.chapters);
+        this.selectedChapter = this.chapters[0];
+        const stringValue = JSON.stringify(this.selectedChapter.chapterId);
+        sessionStorage.setItem("chapterId", stringValue);
+      }
+    })
 
-    var item = sessionStorage.getItem("user");
+    this.selectedChapter = this.chapters[0];
 
-    if(item=="0"){
-      this.chapters = [];
-    }
-    else{
-      this.chapters = [
-        {
-          id: 1,
-          name: "Return of God",
-          author: "me",
-          description: "God Returns"
-        },
-        {
-          id: 2,
-          name: "Evil God",
-          author: "me",
-          description: "What the god is bad"
-        },
-        {
-          id: 3,
-          name: "Nice God",
-          author: "me",
-          description: "Nevermind he good"
-        },
-      ];
-      this.selectedChapter = this.chapters[0];
-    }
 
     this.columns = this.setColumns();
   }
 
   private setColumns(): TableColumns[] {
     return [{
-      columnName: "id",
+      columnName: "chapterNumber",
       displayName: "Chapter No",
       hidden: false,
       readonly: true
@@ -180,17 +195,17 @@ export class ChaptersComponent {
     ]
   }
 
-  private getNextId(){
+
+  private getNextNumber(){
     var highest: number = 0;
     if(this.chapters){
       this.chapters.forEach( (chapter ) =>{
-        if(chapter.id > highest){
-          highest = chapter.id;
+        if(chapter.chapterNumber > highest){
+          highest = chapter.chapterNumber;
         }
       });
     }
     return (highest+1);
   }
-
 
 }

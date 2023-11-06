@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const projectSchema = new mongoose.Schema({
+  userId:{
+    type: String,
+    required: [true, 'Please provide a user id'],
+  },
   name: {
     type: String,
     required: [true, 'Please provide a project name'],
@@ -8,10 +12,6 @@ const projectSchema = new mongoose.Schema({
   author: {
     type: String,
     required: [true, 'Please provide project author'],
-  },
-  created: {
-    type: Date,
-    required: [true, 'Please provide project creation date'],
   },
   description: {
     type: String,
