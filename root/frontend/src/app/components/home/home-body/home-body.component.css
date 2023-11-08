@@ -1,10 +1,10 @@
 .content {
     width: 100%;
-    position: absolute;
-    top: 45%;
-    transform: translateY(-50%);
-    text-align: center;
+    height:75%;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content h1 {
@@ -18,72 +18,13 @@
     font-family: "Comic Sans MS", cursive;
 }
 
-.sign_up_button {
-    font-family: "Sans-serif", Arial, serif;
-    font-weight: bold;
-    width: 170px;
-    padding: 15px 0;
-    text-align: center;
-    border-radius: 12px;
-    background: #4285F4;
-    color: white;
-    cursor: pointer;
-    font-size: 17px;
-    margin: 20px 10px;
-    position: relative;
-    overflow: hidden;
+.title-buttons button{
+    margin: .5rem;
 }
 
-.sign_up_button span {
-    background: #1973e8;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-    transition: 0.5s;
-}
-
-.sign_up_button:hover span{
-    width: 100%;
-}
-
-.sign_up_button:hover{
-    background-color: #1059b9;
-}
-
-.sign_in_button {
-    font-family: "Sans-serif", Arial, serif;
-    font-weight: bold;
-    width: 170px;
-    padding: 15px 0;
-    text-align: center;
-    border-radius: 12px;
-    background: white;
-    color: #1973e8;
-    cursor: pointer;
-    font-size: 17px;
-    margin: 20px 10px;
-    position: relative;
-    overflow: hidden;
-}
-
-.sign_in_button span {
-    background: #1973e8;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: -1;
-    transition: 0.5s;
-}
-
-.sign_in_button:hover span{
-    width: 100%;
-}
-
-.sign_in_button:hover{
-    background-color: #c2d4ec
+.container{
+    width: 50%;
+    height: min-content;
+    background-color: aliceblue;
+    border-radius: 20px;
 }

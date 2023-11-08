@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Project } from 'src/app/models/project';
 import { TableColumns } from 'src/app/models/table-columns';
+import { ProjectsService } from './projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -10,27 +11,32 @@ import { TableColumns } from 'src/app/models/table-columns';
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent {
-
-  projects!: Project[];
+  userId!:string;
+  projects: Project[]=[];
   columns!: TableColumns[];
   selectedProject!: Project;
-  public clonedProject: { [id: number]: Project } = {};
+  public clonedProject: { [projectId: string]: Project } = {};
   editing: boolean = false;
   newProject: boolean = false;
 
 
   @ViewChild(Table) private table!: Table;
 
-  constructor(private _router:Router) { }
+  constructor(private _router:Router, private projectsService: ProjectsService) { }
 
   ngOnInit() {
+    var id = sessionStorage.getItem("user");
+    if(id) this.userId= id.replace(/['"]+/g, '')
+    else this.userId = '';
     this.getProjectDate();
   }
 
   createProject() {
     this.newProject = true;
+
     var temp: Project = {
-      id: this.getNextId(),
+      userId: this.userId,
+      projectId: "",
       name: "project",
       author: "me",
       created: new Date(),
@@ -46,15 +52,33 @@ export class ProjectsComponent {
   onRowEditInit(project: Project) {
     this.selectedProject = project;
     this.editing = true;
-    this.clonedProject[project.id]= {...project};
+    this.clonedProject[project.projectId]= {...project};
   }
 
   onRowEditSave(project: Project) {
+    var body = {
+      userId: project.userId,
+      name: project.name,
+      author: project.author,
+      description: project.description
+    };
     if(this.newProject){
-      // create new call to api
+      this.projectsService.newProject(body).subscribe((data)=>{
+        if(data!= null){
+          project = data;
+          this.projects[0] = data;
+          this.selectedProject = this.projects[0];
+          const stringValue = JSON.stringify(this.selectedProject.projectId);
+          sessionStorage.setItem("projectId", stringValue);
+        }
+      })
     }
     else{
-      // save project call to api
+      this.projectsService.editProject(project).subscribe((data)=>{
+        if(data!= null){
+          project = data;
+        }
+      })
     }
     this.newProject = false;
     this.editing = false;
@@ -62,30 +86,37 @@ export class ProjectsComponent {
 
   onRowEditCancel(project: Project, index: number) {
     if(this.newProject){
-      this.projects = this.projects.filter( (data) => data.id != project.id)
+      this.projects = this.projects.filter( (data) => data.projectId != project.projectId)
       if(this.projects.length > 0){
         this.selectedProject = this.projects[0];
       }
       else{
-  
+        
       }
     }
     else{
-      this.projects[index] = this.clonedProject[project.id];
+      this.projects[index] = this.clonedProject[project.projectId];
     }
-    delete this.clonedProject[project.id];
+    delete this.clonedProject[project.projectId];
     this.newProject = false;
     this.editing = false;
   }
 
   onSelect(selected: Project) {
-    if (this.selectedProject.id != selected.id && this.editing == false) {
+    if (this.selectedProject.projectId != selected.projectId && this.editing == false) {
       this.selectedProject = selected;
+      const stringValue = JSON.stringify(selected.projectId);
+      sessionStorage.setItem("projectId", stringValue);
     }
   }
 
   deleteProject(){
-    this.projects = this.projects.filter( (data) => data.id != this.selectedProject.id);
+    if(this.editing == false){
+      this.projectsService.deleteProject(this.selectedProject.projectId).subscribe((data)=>{
+        console.log(data);
+      })
+    }
+    this.projects = this.projects.filter( (data) => data.projectId != this.selectedProject.projectId);
     if(this.projects.length > 0){
       this.selectedProject = this.projects[0];
     }
@@ -101,38 +132,25 @@ export class ProjectsComponent {
   }
 
   private getProjectDate() {
-    this.projects = [
-      {
-        id: 10,
-        name: "project1",
-        author: "me",
-        created: new Date(),
-        description: "project1"
-      },
-      {
-        id: 20,
-        name: "project2",
-        author: "me",
-        created: new Date(),
-        description: "project2"
-      },
-      {
-        id: 30,
-        name: "project3",
-        author: "me",
-        created: new Date(),
-        description: "project3"
-      },
-    ];
-    this.selectedProject = this.projects[0];
     this.columns = this.setColumns();
+      this.projectsService.getProjects(this.userId).subscribe((data)=>{
+        if(data){
+          this.projects = data;
+          console.log(this.projects);
+          this.selectedProject = this.projects[0];
+          const stringValue = JSON.stringify(this.selectedProject.projectId);
+          sessionStorage.setItem("projectId", stringValue);
+        }
+      })
+
+
   }
 
   private setColumns(): TableColumns[] {
     return [{
-      columnName: "id",
+      columnName: "projectId",
       displayName: "Project No",
-      hidden: false,
+      hidden: true,
       readonly: true
     },
     {
@@ -160,17 +178,5 @@ export class ProjectsComponent {
       readonly: false
     },
     ]
-  }
-
-  private getNextId(){
-    var highest: number = 0;
-    if(this.projects){
-      this.projects.forEach( (project ) =>{
-        if(project.id > highest){
-          highest = project.id;
-        }
-      });
-    }
-    return (highest+10);
   }
 }

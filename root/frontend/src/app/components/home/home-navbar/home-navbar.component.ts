@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { HomeService } from '../home.service';
 
 @Component({
   selector: 'app-home-navbar',
@@ -8,16 +9,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class HomeNavbarComponent {
 
-  constructor(private _router:Router) { }
+  private screen: number = 0;
 
-  RedirectToSignIn()
-  {
-    this._router.navigate(['SignIn']);
-  }
+  constructor(private homeService: HomeService){}
+  
 
- RedirectToSignUp()
-  {
-    this._router.navigate(['SignUp']);
+  changeScreen(screen: number){
+    this.homeService.changeComponent(screen);
   }
 
 }
+

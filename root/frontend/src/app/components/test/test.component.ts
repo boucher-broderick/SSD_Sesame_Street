@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TestService } from './test.service';
-import { User } from 'src/app/models/user';
+import { User1 } from 'src/app/models/user';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 
@@ -26,7 +26,7 @@ export class TestComponent {
 
   add(){
     this.test_array = [...this.test_array, {name: this.temp_name, age: this.temp_age}];
-    var user : User = {name: this.temp_name, age: this.temp_age};
+    var user : User1 = {name: this.temp_name, age: this.temp_age};
     
     this.testServer.onAddUser(user);
 
