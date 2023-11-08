@@ -4,6 +4,8 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
+import { PasswordModule } from 'primeng/password';
+import { MessagesModule } from 'primeng/messages';
 
 
 
@@ -15,6 +17,8 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     InputTextModule,
     FormsModule,
+    PasswordModule,
+    MessagesModule
   ],
   exports: [  
     CommonModule,
@@ -22,6 +26,8 @@ import { FormsModule } from '@angular/forms';
     TableModule,
     InputTextModule,
     FormsModule,
+    PasswordModule,
+    MessagesModule
   ]
 })
 export class PrimengModule { }

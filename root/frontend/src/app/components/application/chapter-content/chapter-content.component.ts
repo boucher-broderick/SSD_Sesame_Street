@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import Quill from 'Quill';
+import { Component, ContentChildrenDecorator, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ContentService } from './content.service';
+import { Content } from 'src/app/models/content';
+import Quill from 'quill';
 
 @Component({
   selector: 'app-chapter-content',
@@ -8,13 +11,76 @@ import Quill from 'Quill';
 })
 
 export class ChapterContentComponent {
+
+      ngAfterViewInit() {
+    const quill = new Quill('.editor-container', {
+      modules: {
+        toolbar: [
+  [{ header: [1, 2, 3, 4, 5, 6, false] }],
+  [{ font: [] }],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["bold", "italic", "underline"],
+  [{ color: [] }, { background: [] }],
+  [{ script: "sub" }, { script: "super" }],
+  [{ align: [] }],
+  ["image", "blockquote", "code-block"],
+  ["clean"],
+]
+      },
+      placeholder: 'Write here...',
+      theme: 'snow',
+      debug: 'info'
+    });
+  }
+
+    contentId!: string;
+    projectId!: string;
+    chapterId!: string;
     loading: boolean = false;
+    text: string = "";
+    constructor(private _router:Router, private contentService: ContentService){}
+
+    ngOnInit(){
+        var id1 = sessionStorage.getItem("projectId");
+        if(id1) this.projectId= id1.replace(/['"]+/g, '')
+        else this.projectId = '';
+
+        var id2 = sessionStorage.getItem("chapterId");
+        if(id2) this.chapterId= id2.replace(/['"]+/g, '')
+        else this.chapterId = '';
+        this.getContent();
+    }
+
+    redirectToChapters(){
+        this._router.navigate(['application/chapters']);
+      }
+
+    redirectToProjects(){
+    this._router.navigate(['application/']);
+    }
+
+    onSave(){
+
+        this.contentService.editProject(this.contentId, this.projectId, this.chapterId, this.text).subscribe((data)=>{
+            console.log(data);
+        })
+    }
+
+    
     load() {
         this.loading = true;
 
         setTimeout(() => {
             this.loading = false
         }, 2000);
+    }
+
+    private getContent(){
+        this.contentService.getContent(this.projectId, this.chapterId).subscribe((data)=>{
+            console.log(data);
+            this.text = data[0].content;
+            this.contentId = data[0].contentId;
+        })
     }
 }
 
@@ -45,12 +111,12 @@ projectTitles.forEach((title) => {
     });
 });
 
-// text-editor
-let options = {
-  modules: {
-    toolbar: '#toolbar'
-  },
-  placeholder: 'Write something...',
-  theme: 'snow'
-};
-let editor = new Quill('#editor', options);
+// // text-editor
+// let options = {
+//   modules: {
+//     toolbar: '#toolbar'
+//   },
+//   placeholder: 'Write something...',
+//   theme: 'snow'
+// };
+// let editor = new Quill('#editor', options);

@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <p-table [value]="chapters" [columns]="columns" dataKey="id" editMode="row" styleClass="p-datatable-striped p-datatable-gridlines p-datatable-sm"
+    <p-table [value]="chapters" [columns]="columns" dataKey="chapterId" editMode="row" styleClass="p-datatable-striped p-datatable-gridlines p-datatable-sm"
     [scrollable]="true" scrollHeight="75vh" [reorderableColumns]="true" (onRowReorder)="onRowReorder()">
         <ng-template pTemplate="header">
             <tr>
@@ -23,14 +23,14 @@
             </tr>
         </ng-template>
         <ng-template pTemplate="body" let-rowData let-edit="editing" let-ri="rowIndex">
-            <tr [pEditableRow]="rowData" [pSelectableRow]="rowData" [class.p-highlight]="rowData.id === selectedChapter.id" (click)="onSelect(rowData)" [pReorderableRow]="ri" >
+            <tr [pEditableRow]="rowData" [pSelectableRow]="rowData" [class.p-highlight]="rowData.chapterId === selectedChapter.chapterId" (click)="onSelect(rowData)" [pReorderableRow]="ri" >
                 <td style="text-align:center; min-width: 50px;" >
                     <span *ngIf="!editing"  class="pi pi-bars" pReorderableRowHandle></span>
                     <span *ngIf="editing" class="pi pi-bars"></span>
                 </td> 
                 <td style="text-align:center; min-width: 50px;">
                     <div class="flex align-items-center justify-content-center gap-2">
-                        <button *ngIf="!edit" [disabled]="editing && rowData.id != selectedChapter.id" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(rowData)" class="p-button-rounded p-button-text"></button>
+                        <button *ngIf="!edit" [disabled]="editing && rowData.chapterId != selectedChapter.chapterId" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" (click)="onRowEditInit(rowData)" class="p-button-rounded p-button-text"></button>
                         <button *ngIf="edit" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" (click)="onRowEditSave(rowData)" class="p-button-rounded p-button-text p-button-success mr-2"></button>
                         <button *ngIf="edit" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" (click)="onRowEditCancel(rowData, ri)" class="p-button-rounded p-button-text p-button-danger"></button>
                     </div>
