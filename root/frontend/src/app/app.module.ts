@@ -27,12 +27,7 @@ import { QuillModule } from 'ngx-quill';
     HomeModule,
     PrimengModule,
     ApplicationModule,
-    QuillModule.forRoot({
-      modules: {
-      imageResize: {},
-      imageDrop: true,
-      }
-    }),
+    QuillModule.forRoot(),
   ],
 
   providers: [],
