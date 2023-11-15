@@ -9,6 +9,7 @@ import { ApplicationComponent } from './application.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
+import {QuillEditorComponent} from "ngx-quill";
 
 
 
@@ -26,8 +27,9 @@ import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
     CommonModule,
     ApplicationRoutingModule,
     RouterModule,
-    PrimengModule
-    
+    PrimengModule,
+    QuillEditorComponent
+
   ]
 })
 export class ApplicationModule { }

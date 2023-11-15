@@ -40,8 +40,7 @@ export class ContentService {
   }
 
 
-
-  editProject(contentId: string, projectId: string, chapterId: string, content:string): Observable<any>{
+  editContent(contentId: string, projectId: string, chapterId: string, content:string): Observable<any>{
     projectId = projectId.replace(/['"]+/g, '');
     chapterId = chapterId.replace(/['"]+/g, '');
     contentId = contentId.replace(/['"]+/g, '');
