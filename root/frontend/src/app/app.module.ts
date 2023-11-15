@@ -11,7 +11,7 @@ import { TestComponent } from './components/test/test.component';
 import { HomeModule } from './components/home/home.module';
 import { PrimengModule } from './shared/modules/primeng/primeng.module';
 
-
+import { QuillModule } from 'ngx-quill';
 
 
 @NgModule({
@@ -19,15 +19,22 @@ import { PrimengModule } from './shared/modules/primeng/primeng.module';
     AppComponent,
     TestComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     HomeModule,
     PrimengModule,
-    ApplicationModule
-
+    ApplicationModule,
+    QuillModule.forRoot({
+      modules: {
+      imageResize: {},
+      imageDrop: true,
+      }
+    }),
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })
