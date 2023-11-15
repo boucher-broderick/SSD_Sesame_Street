@@ -1,8 +1,5 @@
 const Content = require('../models/contentModel');
 
-
-
-
 exports.editContent = async (req, res) => {
   try {
     const { contentId, projectId, chapterId, content } = req.body;

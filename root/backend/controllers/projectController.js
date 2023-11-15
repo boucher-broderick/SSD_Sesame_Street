@@ -1,4 +1,6 @@
 const Project = require('../models/projectModel');
+const Chapter = require('../models/chapterModel');
+const Content = require('../models/contentModel');
 
 exports.addProject = async (req, res) => {
   try {
@@ -22,15 +24,27 @@ exports.addProject = async (req, res) => {
 
 exports.deleteProject = async (req, res) => {
   try {
-    const {projectId} = req.query;
-    console.log(projectId);
+    const { projectId } = req.query;
+
+    // Retrieve all chapters associated with the project
+    const chapters = await Chapter.find({ projectId: projectId });
+    
+    // Loop through each chapter and delete associated content
+    for (let chapter of chapters) {
+      await Content.deleteMany({ chapterId: chapter._id });
+    }
+
+    // Delete all chapters associated with the project
+    await Chapter.deleteMany({ projectId: projectId });
+
+    // Finally, delete the project itself
     const deletedProject = await Project.findByIdAndRemove(projectId);
 
     if (!deletedProject) {
       return res.status(404).json({ message: 'Project not found' });
     }
 
-    res.json({ message: 'Project deleted', project: deletedProject });
+    res.json({ message: 'Project, its chapters, and associated content deleted', project: deletedProject });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');

@@ -32,17 +32,19 @@ exports.addChapter = async (req, res) => {
 
 exports.deleteChapter = async (req, res) => {
   try {
-    const {chapterId} = req.query;
+    const { chapterId } = req.query;
 
+    // First, delete all content associated with the chapter
+    const deletedContent = await Content.deleteMany({ chapterId: chapterId });
+
+    // Then, delete the chapter itself
     const deletedChapter = await Chapter.findByIdAndRemove(chapterId);
 
     if (!deletedChapter) {
-      res.status(404).json({ message: 'Chapter not found' });
-    }
-    else{
-      res.status(200).json({ message: 'Chapter deleted', chapter: deletedChapter });
+      return res.status(404).json({ message: 'Chapter not found' });
     }
 
+    res.status(200).json({ message: 'Chapter and its content deleted', chapter: deletedChapter });
   } catch (err) {
     console.error(err);
     res.status(500).send('Server Error');
