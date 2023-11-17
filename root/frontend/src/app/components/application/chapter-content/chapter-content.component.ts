@@ -17,14 +17,14 @@ interface UploadEvent {
 })
 
 export class ChapterContentComponent {
-
-    sidebarVisible: boolean = false;
     chapterName!: string;
+    description!: string;
     contentId!: string;
     projectId!: string;
     chapterId!: string;
     loading: boolean = false;
     text: string = "";
+    sidebarVisible: boolean = false;
     constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService){}
 
     ngOnInit(){
@@ -43,6 +43,7 @@ export class ChapterContentComponent {
         this.contentService.getChapters(this.projectId).subscribe((data) => {
             console.log(data);
             this.chapterName = "Chapter " + data[0].chapterNumber + ": " + data[0].name;
+            this.description = data[0].description;
         })
         this.contentService.getContent(this.projectId, this.chapterId).subscribe((data)=>{
             console.log(data);
@@ -51,28 +52,31 @@ export class ChapterContentComponent {
         })
     }
 
+    onSidebarShow() {
+
+    }
+
+    onSidebarHide() {
+
+    }
+
     onSave(){
         this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text).subscribe((data)=>{
             console.log(data);
         })
     }
-
     load() {
         this.loading = true;
         setTimeout(() => {
             this.loading = false
         }, 1000);
     }
-
     redirectToChapters(){
-    this._router.navigate(['application/chapters']);
+        this._router.navigate(['application/chapters']);
     }
     redirectToProjects(){
-    this._router.navigate(['application/']);
+        this._router.navigate(['application/']);
     }
 
-    onUpload(event: UploadEvent) {
-        this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Basic Mode' });
-    }
 }
 

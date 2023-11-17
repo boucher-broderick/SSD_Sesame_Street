@@ -1,10 +1,30 @@
-<h1 class="chapter-title">
-    {{chapterName}}
-</h1>
+<link href="https://fonts.cdnfonts.com/css/ds-marker-felt" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/chalkduster" rel="stylesheet">
+
+<style>
+    @import url('https://fonts.cdnfonts.com/css/ds-marker-felt');
+    @import url('https://fonts.cdnfonts.com/css/chalkduster');
+</style>
+
+
+<div class="title-container">
+    <h1 class="chapter-title">{{chapterName}} </h1>
+    <p-overlayPanel #op [style]="{
+        width: '500px',
+        fontSize: '16px',
+        border: '0.5px solid black',
+        borderRadius: '8px'
+    }">
+        <p style="font-weight: bold; text-decoration: underline; margin:0; margin-bottom:0.3em;">Chapter Description:</p>
+        {{description}}
+    </p-overlayPanel>
+    <p-button icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
+</div>
+
+
 
 <div class="body">
-
-    <p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="w-30rem">
+    <p-sidebar class="sidebar" (onShow)="onSidebarShow()" (onHide)="onSidebarHide()" [(visible)]="sidebarVisible" [modal]="false" position="right" [style]="{width:'35em'}">
         <h3>Inspiration Panel</h3>
         <p-panel class="images-panel" header="Images">
             <p>No images available</p>
@@ -13,10 +33,9 @@
             <p>No links available</p>
         </p-panel>
     </p-sidebar>
-    <p-button class="sidePanelButton" (click)="sidebarVisible = true" icon="pi pi-search" [rounded]="true" severity="success"></p-button>
-
+    <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true"[rounded]="true" [text]="true" severity="success"></p-button>
         <div class="editor-container">
-            <quill-editor [(ngModel)]="text"></quill-editor>
+            <quill-editor [(ngModel)]="text" [ngClass]="{'sidebar-open': sidebarVisible}"></quill-editor>
         </div>
         <div class="buttons">
             <button pButton label="Projects List" style="margin-right: 20px;" (click)="redirectToProjects()"></button>

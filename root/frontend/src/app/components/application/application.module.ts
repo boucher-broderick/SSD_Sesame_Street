@@ -13,8 +13,7 @@ import { QuillEditorComponent } from "ngx-quill";
 import { SidebarModule } from 'primeng/sidebar';
 import { GalleriaModule } from 'primeng/galleria'
 import { PanelModule } from 'primeng/panel';
-import { FileUploadModule } from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -34,8 +33,7 @@ import {HttpClientModule} from '@angular/common/http';
     SidebarModule,
     GalleriaModule,
     PanelModule,
-    FileUploadModule,
-    HttpClientModule
+    OverlayPanelModule
   ]
 })
 export class ApplicationModule { }
