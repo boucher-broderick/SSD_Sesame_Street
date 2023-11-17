@@ -6,7 +6,6 @@
     @import url('https://fonts.cdnfonts.com/css/chalkduster');
 </style>
 
-
 <div class="title-container">
     <h1 class="chapter-title">{{chapterName}} </h1>
     <p-overlayPanel #op [style]="{
@@ -21,25 +20,30 @@
     <p-button icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
 </div>
 
-
-
 <div class="body">
-    <p-sidebar class="sidebar" (onShow)="onSidebarShow()" (onHide)="onSidebarHide()" [(visible)]="sidebarVisible" [modal]="false" position="right" [style]="{width:'35em'}">
-        <h3>Inspiration Panel</h3>
-        <p-panel class="images-panel" header="Images">
-            <p>No images available</p>
+    <p-sidebar class="sidebar" [(visible)]="sidebarVisible" [modal]="false" position="right" [style]="{width:'35em'}">
+        <h2>Inspiration Panel</h2>
+        <p-panel class="images-panel" header="Images" [toggleable]="true">
+            <p>
+                No images available
+            </p>
         </p-panel>
-        <p-panel class="links-panel" header="Links">
-            <p>No links available</p>
+        <p-panel class="links-panel" header="Links" [toggleable]="true">
+            <p>
+                No links available
+            </p>
         </p-panel>
     </p-sidebar>
-    <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true"[rounded]="true" [text]="true" severity="success"></p-button>
-        <div class="editor-container">
-            <quill-editor [(ngModel)]="text" [ngClass]="{'sidebar-open': sidebarVisible}"></quill-editor>
-        </div>
-        <div class="buttons">
-            <button pButton label="Projects List" style="margin-right: 20px;" (click)="redirectToProjects()"></button>
-            <button pButton label="Chapters List" style="margin-right: 20px;" (click)="redirectToChapters()"></button>
-            <p-button label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
-        </div>
+    <div class="right-panel card flex justify-content-center">
+        <p-toast class="toast" position="top-center"></p-toast>
+        <p-splitButton class="menu-button" size="small" icon="pi pi-check" label="Save"  [model]="menuItems" (onClick)="onSave()" styleClass="p-button-raised p-button-info p-button-text mr-2 mb-2"></p-splitButton>
+        <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true"[rounded]="true" [text]="true" severity="success"></p-button>
+    </div>
+    <div class="editor-container">
+        <quill-editor [(ngModel)]="text" [ngClass]="{'sidebar-open': sidebarVisible}"></quill-editor>
+    </div>
+    <div class="bottom-buttons">
+        <p-button class="bot-chapters" severity="secondary" [rounded]="true" [text]="true" icon="pi pi-arrow-left" label="Back"  (click)="redirectToChapters()"></p-button>
+        <p-button class="bot-save" severity="secondary" [rounded]="true" [text]="true" sicon="pi pi-check"label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
+    </div>
 </div>

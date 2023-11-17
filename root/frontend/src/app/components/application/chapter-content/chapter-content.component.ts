@@ -1,9 +1,7 @@
-import { Component, ContentChildrenDecorator, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ContentService } from './content.service';
-import { Content } from 'src/app/models/content';
-import { QuillModules } from 'ngx-quill';
-import { MessageService } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 
 interface UploadEvent {
     originalEvent: Event;
@@ -17,6 +15,7 @@ interface UploadEvent {
 })
 
 export class ChapterContentComponent {
+    menuItems: MenuItem[];
     chapterName!: string;
     description!: string;
     contentId!: string;
@@ -25,10 +24,26 @@ export class ChapterContentComponent {
     loading: boolean = false;
     text: string = "";
     sidebarVisible: boolean = false;
-    constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService){}
+    constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService) {
+            this.menuItems = [
+            {
+                label: 'Chapters list',
+                icon: 'pi pi-book',
+                command: () => {
+                    this.redirectToChapters();
+                }
+            },
+            {
+                label: 'Projects list',
+                icon: 'pi pi-folder',
+                command: () => {
+                    this.redirectToProjects();
+                }
+            },
+        ];
+    }
 
     ngOnInit(){
-
         var id1 = sessionStorage.getItem("projectId");
         if(id1) this.projectId= id1.replace(/['"]+/g, '')
         else this.projectId = '';
@@ -52,18 +67,11 @@ export class ChapterContentComponent {
         })
     }
 
-    onSidebarShow() {
-
-    }
-
-    onSidebarHide() {
-
-    }
-
     onSave(){
         this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text).subscribe((data)=>{
             console.log(data);
         })
+        this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content Saved' });
     }
     load() {
         this.loading = true;

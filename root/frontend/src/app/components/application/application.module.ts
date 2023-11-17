@@ -14,6 +14,8 @@ import { SidebarModule } from 'primeng/sidebar';
 import { GalleriaModule } from 'primeng/galleria'
 import { PanelModule } from 'primeng/panel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
     SidebarModule,
     GalleriaModule,
     PanelModule,
-    OverlayPanelModule
+    OverlayPanelModule,
+    SplitButtonModule,
+    ToastModule
   ]
 })
 export class ApplicationModule { }

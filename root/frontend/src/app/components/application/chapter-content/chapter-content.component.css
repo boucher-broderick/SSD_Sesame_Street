@@ -25,6 +25,8 @@
 }
 
 .body {
+    z-index: 0;
+    position: relative;
     background-color: #F3F3F3;
 }
 
@@ -39,14 +41,22 @@
     font-family: 'DS Marker Felt', fantasy;
 }
 
+h2 {
+    font-weight: bold;
+    font-family: 'Chalkduster', fantasy;
+    color: darkorange;
+    margin-left: 9rem;
+}
+
 ::ng-deep .ql-toolbar {
     border: none;
     display: flex;
     justify-content: center;
-    margin-left: 10rem;
+    margin-left: 5rem;
     position: sticky;
     top: 0;
     z-index: 1;
+    margin-top: 0.7rem;
     background-color: #F3F3F3;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
 }
@@ -74,13 +84,43 @@
     transition: margin-left 0.3s ease-in-out;
 }
 
+
+.editor-container {
+    transition: margin-left 0.3s;
+}
+
+.bottom-buttons {
+    margin-left: 40rem;
+}
+
+.bot-back  {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.bot-save {
+    font-size: 2rem;
+    margin: 1rem;
+}
+
+.sidebar {
+    width: 250px;
+    justify-content: center;
+}
+
+.menu-button {
+    float: right;
+    position: sticky;
+    margin-right: 3rem;
+    margin-top: 0.5rem;
+}
+
 .sidePanelButton {
     display: flex;
     position: sticky;
-    z-index: 1;
-    top: 1rem;
     float: right;
-    margin: 1rem;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
 }
 
 .images-panel {
@@ -91,14 +131,7 @@
     margin: 3rem;
 }
 
-.editor-container {
-    transition: margin-left 0.3s;
-}
-
-.buttons {
-    margin-left: 30rem;
-}
-
-.sidebar {
-    width: 250px;
+.right-panel {
+    position: sticky;
+    top: 1rem;
 }
