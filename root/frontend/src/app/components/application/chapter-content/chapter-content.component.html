@@ -1,12 +1,26 @@
-<div class="center">
-        <h3>Content</h3>
+<h1 class="chapter-title">
+    {{chapterName}}
+</h1>
+
+<div class="body">
+
+    <p-sidebar [(visible)]="sidebarVisible" position="right" styleClass="w-30rem">
+        <h3>Inspiration Panel</h3>
+        <p-panel class="images-panel" header="Images">
+            <p>No images available</p>
+        </p-panel>
+        <p-panel class="links-panel" header="Links">
+            <p>No links available</p>
+        </p-panel>
+    </p-sidebar>
+    <p-button class="sidePanelButton" (click)="sidebarVisible = true" icon="pi pi-search" [rounded]="true" severity="success"></p-button>
+
         <div class="editor-container">
             <quill-editor [(ngModel)]="text"></quill-editor>
         </div>
-        <div style="margin-top: 20px;">
+        <div class="buttons">
             <button pButton label="Projects List" style="margin-right: 20px;" (click)="redirectToProjects()"></button>
             <button pButton label="Chapters List" style="margin-right: 20px;" (click)="redirectToChapters()"></button>
             <p-button label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
         </div>
-        
 </div>

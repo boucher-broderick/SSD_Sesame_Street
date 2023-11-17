@@ -9,13 +9,15 @@ import { ApplicationComponent } from './application.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
-import {QuillEditorComponent} from "ngx-quill";
-
-
+import { QuillEditorComponent } from "ngx-quill";
+import { SidebarModule } from 'primeng/sidebar';
+import { GalleriaModule } from 'primeng/galleria'
+import { PanelModule } from 'primeng/panel';
+import { FileUploadModule } from 'primeng/fileupload';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
-
     SettingsComponent,
     ProjectsComponent,
     ChaptersComponent,
@@ -28,8 +30,12 @@ import {QuillEditorComponent} from "ngx-quill";
     ApplicationRoutingModule,
     RouterModule,
     PrimengModule,
-    QuillEditorComponent
-
+    QuillEditorComponent,
+    SidebarModule,
+    GalleriaModule,
+    PanelModule,
+    FileUploadModule,
+    HttpClientModule
   ]
 })
 export class ApplicationModule { }

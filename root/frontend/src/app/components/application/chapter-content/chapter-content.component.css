@@ -1,19 +1,86 @@
-
-
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-.body {
-    background-color: white;
+@page {
+    margin: 1in;
 }
 
-.editor-container .ql-editor {
+@media print {
+    body {
+        background: none;
+    }
+
+    ::ng-deep .ql-editor {
+        width: 6.5in;
+        height: 9in;
+        padding: 0;
+        margin: 0;
+        box-shadow: none;
+        align-self: flex-start;
+    }
+    ::ng-deep .ql-toolbar.ql-snow {
+        display: none;
+    }
+}
+
+.body {
     background-color: #F3F3F3;
+}
+
+.chapter-title {
+    margin-left: 1rem;
+    top: 0;
+}
+
+::ng-deep .ql-toolbar {
+    border: none;
+    display: flex;
+    justify-content: center;
+    margin-left: 10rem;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: #F3F3F3;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+}
+
+::ng-deep .ql-editor {
     width: 8.5in;
     min-height: 11in;
-    margin: 1rem auto;
+    padding: 0.5in;
+    margin: 1rem;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    background-color: white;
     justify-content: center;
-    align-items: center;
+}
+
+::ng-deep .ql-container.ql-snow {
+    border: none;
+    display: flex;
+    justify-content: center;
+}
+
+.sidePanelButton {
+    display: flex;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    float: right;
+    margin: 1rem;
+}
+
+.images-panel {
+    margin: 3rem;
+}
+
+.links-panel {
+    margin: 3rem;
+}
+
+.editor-container {
+}
+
+.buttons {
+    margin-left: 27rem;
 }
