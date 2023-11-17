@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SidebarModule } from 'primeng/sidebar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { GalleriaModule } from 'primeng/galleria'
 
 //components
 import { AppComponent } from './app.component';
@@ -30,8 +29,7 @@ import { QuillModule } from 'ngx-quill';
     ApplicationModule,
     QuillModule.forRoot(),
     BrowserAnimationsModule,
-    SidebarModule,
-    GalleriaModule
+    SidebarModule
   ],
 
   providers: [],
