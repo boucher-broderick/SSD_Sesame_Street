@@ -7,6 +7,7 @@ import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MessageService } from 'primeng/api';
+import {ToastModule} from "primeng/toast";
 
 
 
@@ -21,10 +22,11 @@ import { MessageService } from 'primeng/api';
     SignInComponent,
     SignUpComponent
   ],
-  imports: [
-    CommonModule,
-    PrimengModule,
-    NgOptimizedImage
-  ]
+    imports: [
+        CommonModule,
+        PrimengModule,
+        NgOptimizedImage,
+        ToastModule
+    ]
 })
 export class HomeModule { }

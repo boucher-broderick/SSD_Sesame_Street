@@ -1,9 +1,9 @@
-
-
 import { ApplicationModule, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarModule } from 'primeng/sidebar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 //components
 import { AppComponent } from './app.component';
@@ -28,6 +28,8 @@ import { QuillModule } from 'ngx-quill';
     PrimengModule,
     ApplicationModule,
     QuillModule.forRoot(),
+    BrowserAnimationsModule,
+    SidebarModule
   ],
 
   providers: [],
