@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "angular-quill": "^0.3.0",
+    "quill": "^1.3.7"
+  },
+  "devDependencies": {
+    "@types/quill": "^2.0.14"
+  }
+}

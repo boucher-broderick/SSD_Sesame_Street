@@ -9,12 +9,16 @@ import { ApplicationComponent } from './application.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
-
-
+import { QuillEditorComponent } from "ngx-quill";
+import { SidebarModule } from 'primeng/sidebar';
+import { GalleriaModule } from 'primeng/galleria'
+import { PanelModule } from 'primeng/panel';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import {ToastModule} from "primeng/toast";
 
 @NgModule({
   declarations: [
-
     SettingsComponent,
     ProjectsComponent,
     ChaptersComponent,
@@ -26,8 +30,14 @@ import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
     CommonModule,
     ApplicationRoutingModule,
     RouterModule,
-    PrimengModule
-    
+    PrimengModule,
+    QuillEditorComponent,
+    SidebarModule,
+    GalleriaModule,
+    PanelModule,
+    OverlayPanelModule,
+    SplitButtonModule,
+    ToastModule
   ]
 })
 export class ApplicationModule { }

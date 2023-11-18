@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { HomeService } from '../home.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
-  styleUrls: ['./sign-up.component.css']
+  styleUrls: ['./sign-up.component.css'],
+  providers: [MessageService]
 })
 export class SignUpComponent {
   public username:string = "";
@@ -14,7 +16,7 @@ export class SignUpComponent {
   public password:string = "";
   public retypePassword:string = "";
 
-    constructor(private _router:Router, private homeService: HomeService){}
+    constructor(private _router:Router, private homeService: HomeService, private messageService: MessageService){}
 
     signUp(){
       if(this.username && this.email && this.password && this.retypePassword){
@@ -30,15 +32,15 @@ export class SignUpComponent {
               sessionStorage.setItem("user", stringValue);
               this._router.navigate(['application']);
             }
-            else{
+            else {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'This email is already registered by an user' });
               console.log(data.error);
             }
           })
-
-          
+        }
+        else {
+          this.messageService.add({severity: 'error', summary: 'Error', detail: 'Re-typed password is not the same as the first password'});
         }
       }
-
-
     }
 }
