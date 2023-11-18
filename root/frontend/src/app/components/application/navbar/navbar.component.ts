@@ -15,8 +15,17 @@ export class NavbarComponent {
 
   }
 
+  redirectToProjects(){
+    this._router.navigate(['application/projects']);
+  }
+
+
   redirectToHome(){
     this._router.navigate(['home']);
+  }
+
+  redirectToSettings(){
+    this._router.navigate(['application/settings']);
   }
 
 

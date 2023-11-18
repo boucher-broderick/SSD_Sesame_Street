@@ -25,3 +25,16 @@ ul {
   li a:hover {
     background-color: #111;
   }    
+
+
+  .input{
+    width: 70%;
+}
+
+.container{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

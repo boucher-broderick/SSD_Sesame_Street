@@ -139,7 +139,14 @@ export class ChaptersComponent {
 
   onRowReorder(){
     var num : number = 1;
-    this.chapters.forEach( (chapter) => chapter.chapterNumber = num++);
+    this.chapters.forEach( (chapter) => {
+      chapter.chapterNumber = num++;
+      this.chaptersService.editProject(chapter).subscribe((data)=>{
+        if(data!= null){
+          chapter = data;
+        }
+      })
+    });
     // call save function from api
   }
 
@@ -149,14 +156,13 @@ export class ChaptersComponent {
       if(data){
         this.chapters = data;
         console.log(this.chapters);
+        this.sortChapters();
         this.selectedChapter = this.chapters[0];
         const stringValue = JSON.stringify(this.selectedChapter.chapterId);
         sessionStorage.setItem("chapterId", stringValue);
+
       }
     })
-
-    this.selectedChapter = this.chapters[0];
-
 
     this.columns = this.setColumns();
   }
@@ -193,6 +199,10 @@ export class ChaptersComponent {
       readonly: false
     },
     ]
+  }
+
+  private sortChapters(){
+    this.chapters.sort((a,b)=> a.chapterNumber - b.chapterNumber);
   }
 
 
