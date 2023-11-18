@@ -11,6 +11,7 @@ export class HomeBodyComponent {
 
   constructor(private homeService: HomeService){}
 
+  // to see which screen should be displayed
   ngOnInit(){
     this.homeService.getComponent().subscribe((screen) =>{
       this.screen = screen;

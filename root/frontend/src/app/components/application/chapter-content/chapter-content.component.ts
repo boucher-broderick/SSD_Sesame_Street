@@ -20,6 +20,7 @@ export class ChapterContentComponent {
     loading: boolean = false;
     text: string = "";
     sidebarVisible: boolean = false;
+
     constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService) {
             this.menuItems = [
             {
@@ -39,6 +40,7 @@ export class ChapterContentComponent {
         ];
     }
 
+    // gets the ids from the session storage
     ngOnInit(){
         let id1 = sessionStorage.getItem("projectId");
         if(id1) this.projectId= id1.replace(/['"]+/g, '')
@@ -50,6 +52,7 @@ export class ChapterContentComponent {
         this.getContent();
     }
 
+    // gets the content from the database
     private getContent(){
         this.contentService.getChapters(this.projectId).subscribe((data) => {
             console.log(data);
@@ -68,18 +71,23 @@ export class ChapterContentComponent {
         })
     }
 
+    // saves the content in the database
     onSave(){
         this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text).subscribe((data)=>{
             console.log(data);
         })
         this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content Saved' });
     }
+
+    // deals with the loading animation
     load() {
         this.loading = true;
         setTimeout(() => {
             this.loading = false
         }, 1000);
     }
+
+    // change screens
     redirectToChapters(){
         this._router.navigate(['application/chapters']);
     }

@@ -15,10 +15,10 @@ export class NavbarComponent {
 
   }
 
+  // change screens
   redirectToProjects(){
     this._router.navigate(['application/projects']);
   }
-
 
   redirectToHome(){
     this._router.navigate(['home']);

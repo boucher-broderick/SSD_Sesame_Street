@@ -13,7 +13,7 @@ export class HomeNavbarComponent {
 
   constructor(private homeService: HomeService){}
   
-
+  //change the screen
   changeScreen(screen: number){
     this.homeService.changeComponent(screen);
   }
