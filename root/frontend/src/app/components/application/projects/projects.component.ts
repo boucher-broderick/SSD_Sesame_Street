@@ -1,14 +1,16 @@
-import { Component, ViewChild,  } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Table } from 'primeng/table';
 import { Project } from 'src/app/models/project';
 import { TableColumns } from 'src/app/models/table-columns';
 import { ProjectsService } from './projects.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-projects',
   templateUrl: './projects.component.html',
-  styleUrls: ['./projects.component.css']
+  styleUrls: ['./projects.component.css'],
+  providers: [MessageService]
 })
 export class ProjectsComponent {
   userId!:string;
@@ -22,11 +24,11 @@ export class ProjectsComponent {
 
   @ViewChild(Table) private table!: Table;
 
-  constructor(private _router:Router, private projectsService: ProjectsService) { }
+  constructor(private _router:Router, private projectsService: ProjectsService, private messageService: MessageService) { }
 
   ngOnInit() {
     var id = sessionStorage.getItem("user");
-    if(id) this.userId= id.replace(/['"]+/g, '')
+    if (id) this.userId = id.replace(/['"]+/g, '')
     else this.userId = '';
     this.getProjectDate();
   }
@@ -142,8 +144,6 @@ export class ProjectsComponent {
           sessionStorage.setItem("projectId", stringValue);
         }
       })
-
-
   }
 
   private setColumns(): TableColumns[] {
@@ -179,4 +179,6 @@ export class ProjectsComponent {
     },
     ]
   }
+
 }
+

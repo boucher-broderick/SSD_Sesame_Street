@@ -14,7 +14,7 @@
         border: '0.5px solid black',
         borderRadius: '8px'
     }">
-        <p style="font-weight: bold; text-decoration: underline; margin:0; margin-bottom:0.3em;">Chapter Description:</p>
+        <p style="font-weight: bold; text-decoration: underline; margin:0 1em 0 0;">Chapter Description:</p>
         {{description}}
     </p-overlayPanel>
     <p-button icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
@@ -37,13 +37,13 @@
     <div class="right-panel card flex justify-content-center">
         <p-toast class="toast" position="top-center"></p-toast>
         <p-splitButton class="menu-button" size="small" icon="pi pi-check" label="Save"  [model]="menuItems" (onClick)="onSave()" styleClass="p-button-raised p-button-info p-button-text mr-2 mb-2"></p-splitButton>
-        <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true"[rounded]="true" [text]="true" severity="success"></p-button>
+        <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true" [rounded]="true" [text]="true" severity="success"></p-button>
     </div>
     <div class="editor-container">
         <quill-editor [(ngModel)]="text" [ngClass]="{'sidebar-open': sidebarVisible}"></quill-editor>
     </div>
     <div class="bottom-buttons">
         <p-button class="bot-chapters" severity="secondary" [rounded]="true" [text]="true" icon="pi pi-arrow-left" label="Back"  (click)="redirectToChapters()"></p-button>
-        <p-button class="bot-save" severity="secondary" [rounded]="true" [text]="true" sicon="pi pi-check"label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
+        <p-button class="bot-save" severity="secondary" [rounded]="true" [text]="true" icon="pi pi-check" label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
     </div>
 </div>

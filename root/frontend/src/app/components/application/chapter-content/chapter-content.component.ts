@@ -3,10 +3,6 @@ import { Router } from '@angular/router';
 import { ContentService } from './content.service';
 import { MenuItem, MessageService } from 'primeng/api';
 
-interface UploadEvent {
-    originalEvent: Event;
-    files: File[];
-}
 @Component({
   selector: 'app-chapter-content',
   templateUrl: './chapter-content.component.html',
@@ -44,10 +40,10 @@ export class ChapterContentComponent {
     }
 
     ngOnInit(){
-        var id1 = sessionStorage.getItem("projectId");
+        let id1 = sessionStorage.getItem("projectId");
         if(id1) this.projectId= id1.replace(/['"]+/g, '')
         else this.projectId = '';
-        var id2 = sessionStorage.getItem("chapterId");
+        let id2 = sessionStorage.getItem("chapterId");
         if(id2) this.chapterId= id2.replace(/['"]+/g, '')
         else this.chapterId = '';
 
@@ -57,8 +53,13 @@ export class ChapterContentComponent {
     private getContent(){
         this.contentService.getChapters(this.projectId).subscribe((data) => {
             console.log(data);
-            this.chapterName = "Chapter " + data[0].chapterNumber + ": " + data[0].name;
-            this.description = data[0].description;
+            for (var i = 0; i < data.length; i++) {
+                if (this.chapterId === data[i].chapterId) {
+                    this.chapterName = "Chapter " + data[i].chapterNumber + ": " + data[i].name;
+                    this.description = data[i].description;
+                    break;
+                }
+            }
         })
         this.contentService.getContent(this.projectId, this.chapterId).subscribe((data)=>{
             console.log(data);
@@ -85,6 +86,5 @@ export class ChapterContentComponent {
     redirectToProjects(){
         this._router.navigate(['application/']);
     }
-
 }
 
