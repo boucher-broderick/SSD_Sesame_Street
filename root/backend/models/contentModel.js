@@ -11,8 +11,17 @@ const contentSchema = new mongoose.Schema({
   },
   content: {
     type: String,
+    default: "",
     required: [true, 'Please provide chapter content'],
   },
+  links: {
+    type: String,
+    default: "",
+  },
+  images: {
+    type: String,
+    default: "",
+  }
 }, {
   timestamps: true,
 });

@@ -17,7 +17,7 @@ exports.addChapter = async (req, res) => {
     const newContent = new Content({
       projectId: savedChapter.projectId,
       chapterId: savedChapter._id, 
-      content: "Default content" 
+      content: ""
     });
 
     await newContent.save();
