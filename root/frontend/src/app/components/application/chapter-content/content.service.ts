@@ -28,7 +28,8 @@ export class ContentService {
               projectId: content.projectId,
               content: content.content,
               links: content.links,
-              images: content.images
+              images: content.images,
+              videos: content.videos
             };
           });
         }
@@ -36,7 +37,7 @@ export class ContentService {
       }));
   }
 
-  editContent(contentId: string, projectId: string, chapterId: string, content:string, links:string, images:string): Observable<any>{
+  editContent(contentId: string, projectId: string, chapterId: string, content:string, links:string, images:string, videos:string): Observable<any>{
     projectId = projectId.replace(/['"]+/g, '');
     console.log('projectId:', projectId);
     chapterId = chapterId.replace(/['"]+/g, '');
@@ -52,8 +53,11 @@ export class ContentService {
     if (!images) { images = "" }
     images = images.replace(/['"]+/g, '');
     console.log('images: ', images);
+    if (!videos) { videos = "" }
+    videos = videos.replace(/['"]+/g, '');
+    console.log('videos: ', videos);
 
-    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images}).pipe(
+    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images, videos: videos}).pipe(
       map((response: any) => {
         if(response.status == 200){
           return {
@@ -61,7 +65,8 @@ export class ContentService {
             projectId: response.content.projectId,
             content: response.content.content,
             links: response.content.links,
-            images: response.content.images
+            images: response.content.images,
+            videos: response.content.videos,
           };
         }
         else return null;
