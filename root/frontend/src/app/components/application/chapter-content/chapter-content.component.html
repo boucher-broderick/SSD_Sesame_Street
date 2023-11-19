@@ -40,6 +40,16 @@
                 </span>
             </ng-template>
         </p-editor>
+        <span class="insImageTitle" style="margin-top:20px;margin-bottom:20px; color:orangered">Videos </span>
+        <p-editor class="videos" [(ngModel)]="videos" [style]="{ height: '350px' }">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-video" aria-label="Video"></button>
+                    <i class="pi pi-arrow-left" style="font-size: 0.6rem; color: grey;"></i>
+                    <span style="font-size:12px; color: grey;"> add videos here</span>
+                </span>
+            </ng-template>
+        </p-editor>
         <p-panel class="links-panel" header="Links" [toggleable]="true">
             <textarea class="links" rows="5" cols="30" pInputTextarea (change)="onLinksChange()" [(ngModel)]="links"></textarea>
         </p-panel>

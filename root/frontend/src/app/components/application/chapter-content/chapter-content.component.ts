@@ -22,6 +22,7 @@ export class ChapterContentComponent {
     text: string = "";
     links: string = "";
     images: string = "";
+    videos: string = "";
     sidebarVisible: boolean = false;
     unsavedChanges: boolean = false;
 
@@ -65,6 +66,7 @@ export class ChapterContentComponent {
             this.text = data[0].content;
             this.links = data[0].links;
             this.images = data[0].images;
+            this.videos = data[0].videos;
         })
     }
 
@@ -79,7 +81,7 @@ export class ChapterContentComponent {
     }
 
     onSave(){
-        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images).subscribe((data)=>{
+        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images, this.videos).subscribe((data)=>{
             console.log(data);
         })
         this.unsavedChanges = false;
