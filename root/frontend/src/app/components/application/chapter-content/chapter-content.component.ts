@@ -26,6 +26,7 @@ export class ChapterContentComponent {
     sidebarVisible: boolean = false;
     unsavedChanges: boolean = false;
 
+
     constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService) {
         this.menuItems = [
             { label: 'Chapters list', icon: 'pi pi-book',
@@ -37,6 +38,7 @@ export class ChapterContentComponent {
         ];
     }
 
+    // gets the ids from the session storage
     ngOnInit(){
         let id1 = sessionStorage.getItem("projectId");
         if(id1) this.projectId= id1.replace(/['"]+/g, '')
@@ -48,6 +50,7 @@ export class ChapterContentComponent {
         this.getContent();
     }
 
+    // gets the content from the database
     private getContent(){
         this.contentService.getChapters(this.projectId).subscribe((data) => {
             console.log(data);
@@ -80,6 +83,7 @@ export class ChapterContentComponent {
         this.unsavedChanges = true;
     }
 
+    // saves the content in the database
     onSave(){
         this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images, this.videos).subscribe((data)=>{
             console.log(data);
@@ -87,12 +91,16 @@ export class ChapterContentComponent {
         this.unsavedChanges = false;
         this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content is saved successfully' });
     }
+
+    // deals with the loading animation
     load() {
         this.loading = true;
         setTimeout(() => {
             this.loading = false
         }, 1000);
     }
+
+    // change screens
     redirectToChapters(){
         this._router.navigate(['application/chapters']);
     }

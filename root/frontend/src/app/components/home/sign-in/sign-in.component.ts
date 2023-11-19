@@ -17,6 +17,7 @@ export class SignInComponent {
   public password: string = "";
   constructor(private _router:Router, private homeService: HomeService, private messageService: MessageService) { }
 
+  // When the user clicks sign in
   signIn(){
     console.log("here");
     this.homeService.onSignIn({email: this.email, password: this.password}).subscribe((data)=>{
@@ -32,6 +33,7 @@ export class SignInComponent {
     })
   }
 
+  // loading animation
   load() {
         this.loading = true;
         setTimeout(() => {

@@ -24,6 +24,7 @@ export class ChaptersComponent {
 
   constructor(private _router:Router, private chaptersService: ChaptersService) { }
 
+  // gets ids from session
   ngOnInit() {
     var id = sessionStorage.getItem("projectId");
     if(id) this.projectId= id.replace(/['"]+/g, '')
@@ -31,6 +32,7 @@ export class ChaptersComponent {
     this.getChaptersData();
   }
 
+  // creates a new chapter in the frontend
   createChapter() {
     this.newChapter = true;
     var temp: Chapter = {
@@ -44,15 +46,16 @@ export class ChaptersComponent {
     this.selectedChapter = this.chapters[0];
     this.table.initRowEdit(this.chapters[0]);
     this.onRowEditInit(this.chapters[0]);
-
   }
 
+  // when the user edits a row
   onRowEditInit(chapter: Chapter) {
     this.selectedChapter = chapter;
     this.editing = true;
     this.clonedProject[chapter.chapterId]= {...chapter};
   }
 
+  // when a user saves an edited row or new row
   onRowEditSave(chapter: Chapter) {
     if(this.newChapter){
       var body = {
@@ -84,6 +87,7 @@ export class ChaptersComponent {
     this.editing = false;
   }
 
+  // when the user cancels the editing of a row
   onRowEditCancel(chapter: Chapter, index: number) {
     if(this.newChapter){
       this.chapters = this.chapters.filter( (data) => data.chapterId != chapter.chapterId)
@@ -102,6 +106,7 @@ export class ChaptersComponent {
     this.editing = false;
   }
 
+  // when the user selects a new chapter
   onSelect(selected: Chapter) {
     if (this.selectedChapter.chapterId != selected.chapterId && this.editing == false) {
       this.selectedChapter = selected;
@@ -110,6 +115,7 @@ export class ChaptersComponent {
     }
   }
 
+  // when the user deletes a chpater
   deleteProject(){
     if(this.editing == false){
       this.chaptersService.deleteChapter(this.selectedChapter.chapterId).subscribe((data)=>{
@@ -128,6 +134,7 @@ export class ChaptersComponent {
     this.newChapter = false;
   }
 
+  // changing screens
   redirectToContent(){
     this._router.navigate(['application/content']);
   }
@@ -137,6 +144,7 @@ export class ChaptersComponent {
 
   }
 
+  //reorders and saves rows
   onRowReorder(){
     var num : number = 1;
     this.chapters.forEach( (chapter) => {
@@ -150,6 +158,7 @@ export class ChaptersComponent {
     // call save function from api
   }
 
+  // gets data from database
   private getChaptersData() {
     this.chapters = [];
     this.chaptersService.getChapters(this.projectId).subscribe((data)=>{
@@ -167,6 +176,7 @@ export class ChaptersComponent {
     this.columns = this.setColumns();
   }
 
+  // sets colomns for table
   private setColumns(): TableColumns[] {
     return [{
       columnName: "chapterNumber",
@@ -201,11 +211,12 @@ export class ChaptersComponent {
     ]
   }
 
+  // sorts chapters by chapter number
   private sortChapters(){
     this.chapters.sort((a,b)=> a.chapterNumber - b.chapterNumber);
   }
 
-
+  // returns the next chapter number
   private getNextNumber(){
     var highest: number = 0;
     if(this.chapters){

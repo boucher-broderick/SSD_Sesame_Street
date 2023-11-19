@@ -18,6 +18,7 @@ export class SignUpComponent {
 
     constructor(private _router:Router, private homeService: HomeService, private messageService: MessageService){}
 
+    // When the user clicks sign up
     signUp(){
       if(this.username && this.email && this.password && this.retypePassword){
         if(this.password == this.retypePassword){

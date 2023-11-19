@@ -26,6 +26,7 @@ export class ProjectsComponent {
 
   constructor(private _router:Router, private projectsService: ProjectsService, private messageService: MessageService) { }
 
+  // gets ids from session
   ngOnInit() {
     var id = sessionStorage.getItem("user");
     if (id) this.userId = id.replace(/['"]+/g, '')
@@ -33,6 +34,7 @@ export class ProjectsComponent {
     this.getProjectDate();
   }
 
+  // creates a new project in the frontend
   createProject() {
     this.newProject = true;
 
@@ -51,12 +53,14 @@ export class ProjectsComponent {
 
   }
 
+  // when the user edits a row
   onRowEditInit(project: Project) {
     this.selectedProject = project;
     this.editing = true;
     this.clonedProject[project.projectId]= {...project};
   }
 
+  // when a user saves an edited row or new row
   onRowEditSave(project: Project) {
     var body = {
       userId: project.userId,
@@ -86,6 +90,7 @@ export class ProjectsComponent {
     this.editing = false;
   }
 
+  // when the user cancels the editing of a row
   onRowEditCancel(project: Project, index: number) {
     if(this.newProject){
       this.projects = this.projects.filter( (data) => data.projectId != project.projectId)
@@ -104,6 +109,7 @@ export class ProjectsComponent {
     this.editing = false;
   }
 
+  // when the user selects a new project
   onSelect(selected: Project) {
     if (this.selectedProject.projectId != selected.projectId && this.editing == false) {
       this.selectedProject = selected;
@@ -112,6 +118,7 @@ export class ProjectsComponent {
     }
   }
 
+  // when the user deletes a project
   deleteProject(){
     if(this.editing == false){
       this.projectsService.deleteProject(this.selectedProject.projectId).subscribe((data)=>{
@@ -129,10 +136,12 @@ export class ProjectsComponent {
     this.newProject = false;
   }
 
+  // changing screens
   redirectToChapters(){
     this._router.navigate(['application/chapters']);
   }
 
+  // get projects data from database
   private getProjectDate() {
     this.columns = this.setColumns();
       this.projectsService.getProjects(this.userId).subscribe((data)=>{
@@ -146,6 +155,7 @@ export class ProjectsComponent {
       })
   }
 
+  // sets colomns for table
   private setColumns(): TableColumns[] {
     return [{
       columnName: "projectId",
