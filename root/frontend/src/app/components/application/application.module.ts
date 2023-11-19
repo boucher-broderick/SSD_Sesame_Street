@@ -11,15 +11,13 @@ import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
 import { QuillEditorComponent } from "ngx-quill";
 import { SidebarModule } from 'primeng/sidebar';
-import { GalleriaModule } from 'primeng/galleria'
 import { PanelModule } from 'primeng/panel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { ToastModule } from "primeng/toast";
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import {FileUploadModule} from "primeng/fileupload";
-import {EditorModule} from "primeng/editor";
+import { EditorModule } from "primeng/editor";
 
 @NgModule({
   declarations: [
@@ -37,14 +35,12 @@ import {EditorModule} from "primeng/editor";
         PrimengModule,
         QuillEditorComponent,
         SidebarModule,
-        GalleriaModule,
         PanelModule,
         OverlayPanelModule,
         SplitButtonModule,
         ToastModule,
         InputTextModule,
         InputTextareaModule,
-        FileUploadModule,
         NgOptimizedImage,
         EditorModule
     ]

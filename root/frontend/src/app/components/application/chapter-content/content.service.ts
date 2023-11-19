@@ -55,9 +55,9 @@ export class ContentService {
     console.log('images: ', images);
     if (!videos) { videos = "" }
     videos = videos.replace(/['"]+/g, '');
-    console.log('videos: ', images);
+    console.log('videos: ', videos);
 
-    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images}).pipe(
+    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images, videos: videos}).pipe(
       map((response: any) => {
         if(response.status == 200){
           return {
@@ -66,7 +66,7 @@ export class ContentService {
             content: response.content.content,
             links: response.content.links,
             images: response.content.images,
-            videos: response.content.videos
+            videos: response.content.videos,
           };
         }
         else return null;
