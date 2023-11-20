@@ -5,7 +5,6 @@
 @page {
     margin: 1in;
 }
-
 @media print {
     body {
         background: none;
@@ -41,71 +40,71 @@
     font-family: 'DS Marker Felt', fantasy;
 }
 
-h2 {
+.insPanelTitle {
     font-weight: bold;
     font-family: 'Chalkduster', fantasy;
     color: darkorange;
-    margin-left: 9rem;
+    margin-left: 7rem;
 }
 
-::ng-deep .ql-toolbar {
+::ng-deep .main .ql-toolbar {
     border: none;
     display: flex;
     justify-content: center;
     margin-left: 5rem;
     position: sticky;
     top: 0;
-    z-index: 1;
     margin-top: 0.7rem;
     background-color: #F3F3F3;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+    transition: margin-left 0.5s ease;
+    z-index: 1;
 }
 
-::ng-deep .ql-editor {
+::ng-deep .main .ql-editor {
+    position: relative;
     width: 8.5in;
     min-height: 11in;
     padding: 0.5in;
     margin: 1rem;
-    margin-left: 12rem;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
     background-color: white;
-    justify-content: center
+    justify-content: center;
+    z-index:0;
 }
 
-.sidebar-open ::ng-deep .ql-editor {
-    margin-left:0;
-    margin-right:250px;
-}
-
-::ng-deep .ql-container.ql-snow {
+::ng-deep .main .ql-container.ql-snow {
+    z-index: 0;
     border: none;
     display: flex;
     justify-content: center;
-    transition: margin-left 0.3s ease-in-out;
-}
-
-
-.editor-container {
-    transition: margin-left 0.3s;
+    transition: margin-left 0.5s ease;
+    margin-left: 14rem;
 }
 
 .bottom-buttons {
-    margin-left: 40rem;
-}
-
-.bot-back  {
-    font-size: 2rem;
-    margin: 1rem;
-}
-
-.bot-save {
-    font-size: 2rem;
-    margin: 1rem;
+    display: flex;
+    margin-left: 39rem;
+    transition: margin-left 0.5s ease;
 }
 
 .sidebar {
     width: 250px;
     justify-content: center;
+}
+
+.sidebar-open ::ng-deep .main .ql-container {
+    margin-left:0;
+    margin-right:220px;
+}
+
+.sidebar-open ::ng-deep .main .ql-toolbar {
+    margin-left:0;
+    margin-right:20px;
+}
+
+.sidebar-open .bottom-buttons {
+    margin-left:22.5rem;
 }
 
 .menu-button {
@@ -129,9 +128,33 @@ h2 {
 
 .links-panel {
     margin: 3rem;
+    justify-content: center;
 }
 
 .right-panel {
     position: sticky;
     top: 1rem;
+}
+
+.insImageTitle {
+    color: slateblue;
+    font-family: 'Chalkduster', fantasy;
+    font-size: 25px;
+    display: flex;
+}
+
+.links {
+    border: none;
+    width: 450px;
+}
+
+.panel-save {
+    margin-left: 18.5rem;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+::ng-deep .ql-tooltip {
+    white-space: normal;
+    margin-left: 8rem;
 }

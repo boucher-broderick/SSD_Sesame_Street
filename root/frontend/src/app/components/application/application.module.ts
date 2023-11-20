@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import { SettingsComponent } from './settings/settings.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ChaptersComponent } from './chapters/chapters.component';
@@ -11,11 +11,13 @@ import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
 import { QuillEditorComponent } from "ngx-quill";
 import { SidebarModule } from 'primeng/sidebar';
-import { GalleriaModule } from 'primeng/galleria'
 import { PanelModule } from 'primeng/panel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { SplitButtonModule } from 'primeng/splitbutton';
-import {ToastModule} from "primeng/toast";
+import { ToastModule } from "primeng/toast";
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { EditorModule } from "primeng/editor";
 
 @NgModule({
   declarations: [
@@ -26,18 +28,21 @@ import {ToastModule} from "primeng/toast";
     NavbarComponent,
     ApplicationComponent
   ],
-  imports: [
-    CommonModule,
-    ApplicationRoutingModule,
-    RouterModule,
-    PrimengModule,
-    QuillEditorComponent,
-    SidebarModule,
-    GalleriaModule,
-    PanelModule,
-    OverlayPanelModule,
-    SplitButtonModule,
-    ToastModule
-  ]
+    imports: [
+        CommonModule,
+        ApplicationRoutingModule,
+        RouterModule,
+        PrimengModule,
+        QuillEditorComponent,
+        SidebarModule,
+        PanelModule,
+        OverlayPanelModule,
+        SplitButtonModule,
+        ToastModule,
+        InputTextModule,
+        InputTextareaModule,
+        NgOptimizedImage,
+        EditorModule
+    ]
 })
 export class ApplicationModule { }

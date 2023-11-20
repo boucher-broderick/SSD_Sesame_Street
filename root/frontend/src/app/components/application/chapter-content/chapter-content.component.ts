@@ -13,29 +13,27 @@ import { MenuItem, MessageService } from 'primeng/api';
 export class ChapterContentComponent {
     menuItems: MenuItem[];
     chapterName!: string;
+    chapterNumber!: string;
     description!: string;
     contentId!: string;
     projectId!: string;
     chapterId!: string;
     loading: boolean = false;
     text: string = "";
+    links: string = "";
+    images: string = "";
+    videos: string = "";
     sidebarVisible: boolean = false;
+    unsavedChanges: boolean = false;
+
 
     constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService) {
-            this.menuItems = [
-            {
-                label: 'Chapters list',
-                icon: 'pi pi-book',
-                command: () => {
-                    this.redirectToChapters();
-                }
+        this.menuItems = [
+            { label: 'Chapters list', icon: 'pi pi-book',
+                command: () => { this.redirectToChapters(); }
             },
-            {
-                label: 'Projects list',
-                icon: 'pi pi-folder',
-                command: () => {
-                    this.redirectToProjects();
-                }
+            { label: 'Projects list', icon: 'pi pi-folder',
+                command: () => { this.redirectToProjects(); }
             },
         ];
     }
@@ -58,7 +56,8 @@ export class ChapterContentComponent {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
                 if (this.chapterId === data[i].chapterId) {
-                    this.chapterName = "Chapter " + data[i].chapterNumber + ": " + data[i].name;
+                    this.chapterName = data[i].name;
+                    this.chapterNumber = "Chapter " + data[i].chapterNumber + ": ";
                     this.description = data[i].description;
                     break;
                 }
@@ -66,17 +65,31 @@ export class ChapterContentComponent {
         })
         this.contentService.getContent(this.projectId, this.chapterId).subscribe((data)=>{
             console.log(data);
-            this.text = data[0].content;
             this.contentId = data[0].contentId;
+            this.text = data[0].content;
+            this.links = data[0].links;
+            this.images = data[0].images;
+            this.videos = data[0].videos;
         })
+    }
+
+    onTextChange() {
+        console.log('Text changed: ' + this.text);
+        this.unsavedChanges = true;
+    }
+
+    onLinksChange() {
+        console.log('Links changed: ' + this.links);
+        this.unsavedChanges = true;
     }
 
     // saves the content in the database
     onSave(){
-        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text).subscribe((data)=>{
+        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images, this.videos).subscribe((data)=>{
             console.log(data);
         })
-        this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content Saved' });
+        this.unsavedChanges = false;
+        this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content is saved successfully' });
     }
 
     // deals with the loading animation
@@ -94,5 +107,6 @@ export class ChapterContentComponent {
     redirectToProjects(){
         this._router.navigate(['application/']);
     }
+
 }
 

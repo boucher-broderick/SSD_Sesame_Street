@@ -6,44 +6,59 @@
     @import url('https://fonts.cdnfonts.com/css/chalkduster');
 </style>
 
+<p-toast class="toast" position="top-right" [baseZIndex]=10000></p-toast>
 <div class="title-container">
-    <h1 class="chapter-title">{{chapterName}} </h1>
+    <h1 style="font-size: 40px" class="chapter-title">{{chapterNumber}} </h1>
+    <h1 style="font-size: 40px" class="chapter-title">{{chapterName}} </h1>
     <p-overlayPanel #op [style]="{
         width: '500px',
-        fontSize: '16px',
+        fontSize: '15px',
         border: '0.5px solid black',
-        borderRadius: '8px'
+        borderRadius: '5px'
     }">
-        <p style="font-weight: bold; text-decoration: underline; margin:0 1em 0 0;">Chapter Description:</p>
         {{description}}
     </p-overlayPanel>
-    <p-button icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
+    <p-button class="description-but" icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
 </div>
 
 <div class="body">
-    <p-sidebar class="sidebar" [(visible)]="sidebarVisible" [modal]="false" position="right" [style]="{width:'35em'}">
-        <h2>Inspiration Panel</h2>
-        <p-panel class="images-panel" header="Images" [toggleable]="true">
-            <p>
-                No images available
-            </p>
-        </p-panel>
-        <p-panel class="links-panel" header="Links" [toggleable]="true">
-            <p>
-                No links available
-            </p>
-        </p-panel>
-    </p-sidebar>
     <div class="right-panel card flex justify-content-center">
-        <p-toast class="toast" position="top-center"></p-toast>
         <p-splitButton class="menu-button" size="small" icon="pi pi-check" label="Save"  [model]="menuItems" (onClick)="onSave()" styleClass="p-button-raised p-button-info p-button-text mr-2 mb-2"></p-splitButton>
         <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true" [rounded]="true" [text]="true" severity="success"></p-button>
     </div>
-    <div class="editor-container">
-        <quill-editor [(ngModel)]="text" [ngClass]="{'sidebar-open': sidebarVisible}"></quill-editor>
-    </div>
-    <div class="bottom-buttons">
-        <p-button class="bot-chapters" severity="secondary" [rounded]="true" [text]="true" icon="pi pi-arrow-left" label="Back"  (click)="redirectToChapters()"></p-button>
-        <p-button class="bot-save" severity="secondary" [rounded]="true" [text]="true" icon="pi pi-check" label="Save" [loading]="loading" (click)="onSave(); load()"></p-button>
+    <p-sidebar class="sidebar" [(visible)]="sidebarVisible" [modal]="false" position="right" [style]="{width:'35em'}">
+        <h1 class="insPanelTitle">Inspiration Panel</h1>
+        <span class="insImageTitle">Images
+            <p-button class="panel-save" icon="pi pi-check" label="save" [rounded]="true" [raised]="true" [text]="true" severity="info" [loading]="loading" (click)="onSave(); load()"></p-button>
+        </span>
+        <p-editor class="images" [(ngModel)]="images" [style]="{ height: '350px' }">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-image" aria-label="Image"></button>
+                    <i class="pi pi-arrow-left" style="font-size: 0.6rem; color: grey;"></i>
+                    <span style="font-size:12px; color: grey;"> add images here</span>
+                </span>
+            </ng-template>
+        </p-editor>
+        <span class="insImageTitle" style="margin-top:20px;margin-bottom:20px; color:orangered">Videos </span>
+        <p-editor class="videos" [(ngModel)]="videos" [style]="{ height: '350px' }">
+            <ng-template pTemplate="header">
+                <span class="ql-formats">
+                    <button type="button" class="ql-video" aria-label="Video"></button>
+                    <i class="pi pi-arrow-left" style="font-size: 0.6rem; color: grey;"></i>
+                    <span style="font-size:12px; color: grey;"> add videos here</span>
+                </span>
+            </ng-template>
+        </p-editor>
+        <p-panel class="links-panel" header="Links" [toggleable]="true">
+            <textarea class="links" rows="5" cols="30" pInputTextarea (change)="onLinksChange()" [(ngModel)]="links"></textarea>
+        </p-panel>
+    </p-sidebar>
+    <div class="editor-container" [ngClass]="{'sidebar-open': sidebarVisible}">
+        <quill-editor class="main" [(ngModel)]="text" [placeholder]="''" (onContentChanged)="onTextChange()"></quill-editor>
+        <div class="bottom-buttons">
+            <p-button class="bot-chapters" icon="pi pi-arrow-left" label="Back" [rounded]="true" [text]="true" severity="secondary" [loading]="loading" (click)="redirectToChapters(); load()"></p-button>
+            <p-button class="bot-save" icon="pi pi-check" label="Save" [rounded]="true" [text]="true" severity="info" [loading]="loading" (click)="onSave(); load()"></p-button>
+        </div>
     </div>
 </div>

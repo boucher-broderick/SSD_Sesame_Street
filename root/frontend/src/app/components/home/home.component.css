@@ -6,7 +6,7 @@
 .banner{
     width: 100%;
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.65)), url("images/journal.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.65)), url("journal.jpg");
     background-size: cover;
     background-position: center;
 }

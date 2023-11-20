@@ -6,8 +6,6 @@ import { Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class ContentService {
-
-
   constructor(private http: HttpClient) { }
 
   getContent(projectId: string, chapterId: string): Observable<any> {
@@ -17,7 +15,6 @@ export class ContentService {
     const params = new HttpParams()
       .set('projectId', projectId)
       .set('chapterId', chapterId);
-
 
     return this.http.get<{message: string}>('http://localhost:5001/api/content/getContent', { params }).pipe(
         
@@ -29,7 +26,10 @@ export class ContentService {
               contentId: content['_id'],
               chapterId: content.chapterName,
               projectId: content.projectId,
-              content: content.content
+              content: content.content,
+              links: content.links,
+              images: content.images,
+              videos: content.videos
             };
           });
         }
@@ -37,6 +37,29 @@ export class ContentService {
       }));
   }
 
+  editContent(contentId: string, projectId: string, chapterId: string, content:string, links:string, images:string, videos:string): Observable<any>{
+    projectId = projectId.replace(/['"]+/g, '');
+    console.log('projectId:', projectId);
+    chapterId = chapterId.replace(/['"]+/g, '');
+    console.log('chapterId:', chapterId);
+    contentId = contentId.replace(/['"]+/g, '');
+    console.log('contentId:', contentId);
+
+    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images, videos: videos}).pipe(
+      map((response: any) => {
+        if(response.status == 200){
+          return {
+            chapterId: response.content.chapterId,
+            projectId: response.content.projectId,
+            content: response.content.content,
+            links: response.content.links,
+            images: response.content.images,
+            videos: response.content.videos,
+          };
+        }
+        else return null;
+      }));
+  }
 
   getChapters(projectId: string): Observable<any> {
     // Create a set of HTTP parameters that includes the userI
@@ -60,26 +83,4 @@ export class ContentService {
         else return null;
       }));
   }
-
-  editContent(contentId: string, projectId: string, chapterId: string, content:string): Observable<any>{
-    projectId = projectId.replace(/['"]+/g, '');
-    chapterId = chapterId.replace(/['"]+/g, '');
-    contentId = contentId.replace(/['"]+/g, '');
-    content = content.replace(/['"]+/g, '');
-    return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content}).pipe(
-      map((response: any) => {
-        if(response.status == 200){
-          return {
-            chapterId: response.content.chapterId,
-            projectId: response.content.projectId,
-            content: response.content.content
-          };
-
-        }
-        else return null;
-      }));
-  }
-
-  
-
 }
