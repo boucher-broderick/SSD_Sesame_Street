@@ -106,6 +106,10 @@ const updateUserInfo = expressAsyncHandler(async(req, res) => {
     if (type === 'username') {
         user.username = change;
     } else if (type === 'email') {
+        const emailExists = await User.findOne({ email: change, _id: { $ne: id } });
+        if (emailExists) {
+            return res.status(200).json({ status: 400, error: "Email already in use" });
+        }
         user.email = change;
     } else if (type === 'password') {
         user.password = await bcrypt.hash(change, 10); // Updated password hashing
