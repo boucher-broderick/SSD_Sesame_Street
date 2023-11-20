@@ -12,12 +12,14 @@ import { HomeModule } from './components/home/home.module';
 import { PrimengModule } from './shared/modules/primeng/primeng.module';
 
 import { QuillModule } from 'ngx-quill';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    ErrorPageComponent
   ],
 
   imports: [

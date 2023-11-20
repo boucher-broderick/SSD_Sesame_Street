@@ -21,6 +21,7 @@ export class NavbarComponent {
   }
 
   redirectToHome(){
+    sessionStorage.clear();
     this._router.navigate(['home']);
   }
 

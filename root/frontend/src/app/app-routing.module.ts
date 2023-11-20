@@ -4,6 +4,7 @@ import { TestComponent } from './components/test/test.component';
 import { HomeComponent } from './components/home/home.component';
 import { SignInComponent } from './components/home/sign-in/sign-in.component';
 import { SignUpComponent } from './components/home/sign-up/sign-up.component';
+import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,13 @@ const routes: Routes = [
     path: 'sign-up',
     component: SignUpComponent
   },
-  { path: 'application',  loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule) }
+  { 
+    path: 'application',  
+    loadChildren: () => import('./components/application/application.module').then(m => m.ApplicationModule)
+   },
+   {
+    path: '**', component: ErrorPageComponent
+   }
 ];
 
 @NgModule({

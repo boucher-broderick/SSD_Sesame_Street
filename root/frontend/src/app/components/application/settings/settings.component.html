@@ -5,38 +5,38 @@
      </h2>
    
   <div style="display: flex; justify-content: center; width: 100%;">
-    <div>
+    <div style="width: 100%;">
       <div style="display: flex">
         <div class="container">
           <h3 style="color:black; margin-bottom:4%">Change Email</h3>
-          <input type="text" pInputText  placeholder="Email"  style="width:70%; margin-bottom:3%"/>
-          <button pButton >Sign In</button>
+          <input type="text" pInputText  [(ngModel)]="email" placeholder="Email"  style="width:70%; margin-bottom:3%"/>
+          <button pButton (click)="onUpdate('email')" >Update Email</button>
         </div>
         <div class="container">
           <h3 style="color:black; margin-bottom:4%">Change Username</h3>
-          <input type="text" pInputText  placeholder="Email"  style="width:70%; margin-bottom:3%"/>
-          <button pButton >Sign In</button>
+          <input type="text" pInputText  [(ngModel)]="username" placeholder="Username"  style="width:70%; margin-bottom:3%"/>
+          <button pButton (click)="onUpdate('username')">Update Username</button>
         </div>
       </div>
       <div style="display: flex">
         <div class="container">
           <h3 style="color:black; margin-bottom:4%">Change Password</h3>
-          <input type="text" pInputText  placeholder="Email"  style="width:70%; margin-bottom:3%"/>
-          <input type="text" pInputText   placeholder="Password"  style="width:70%; margin-bottom:5%"/>
-          <button pButton >Sign In</button>
+          <input type="text" pInputText  [(ngModel)]="password" placeholder="Password"  style="width:70%; margin-bottom:3%"/>
+          <input type="text" pInputText  [(ngModel)]="retype"  placeholder="Retype Password"  style="width:70%; margin-bottom:5%"/>
+          <button pButton (click)="onUpdate('password')">Update Password</button>
         </div>
         <div class="container">
           <h3 style="color:black; margin-bottom:4%">Delete Account</h3>
           <input type="text" pInputText  placeholder="Email"  style="width:70%; margin-bottom:3%"/>
           <input type="text" pInputText   placeholder="Password"  style="width:70%; margin-bottom:5%"/>
-          <button pButton >Sign In</button>
+          <button pButton >DELETE ACCOUNT</button>
         </div>
       </div>
     </div>
   </div>
 
 </div>
-
+<p-toast></p-toast>
 
 
 
