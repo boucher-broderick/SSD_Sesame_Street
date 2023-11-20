@@ -88,6 +88,33 @@ const deleteUser = expressAsyncHandler(async(req, res) =>{
     res.status(200).json({message: "User deleted successfully"});
 });
 
+//@desc Login user
+//@route POST /api/users/login
+//@access public
+const updateUserInfo = expressAsyncHandler(async(req, res) => {
+    const { id, type, change } = req.body;
+    if (!id || !type || !change) {
+        return res.status(200).json({ status: 400,  error: "All fields are mandatory" });
+    }
 
+    const user = await User.findOne({ _id: id });
+    if (!user) {
+        return res.status(200).json({status: 400,   error: "User not found" });
+    }
 
-module.exports = {registerUser, loginUser, currentUser, deleteUser};
+    // Update the field based on the type
+    if (type === 'username') {
+        user.username = change;
+    } else if (type === 'email') {
+        user.email = change;
+    } else if (type === 'password') {
+        user.password = await bcrypt.hash(change, 10); // Updated password hashing
+    } else {
+        return res.status(200).json({status: 400,  error: "Invalid update type" });
+    }
+
+    await user.save();
+    res.status(200).json({ status: 200, message: "User updated successfully" });
+});
+
+module.exports = {registerUser, loginUser, currentUser, deleteUser, updateUserInfo};

@@ -1,12 +1,14 @@
 const express = require("express");
 const { register } = require("module");
-const { registerUser, loginUser, currentUser, deleteUser } = require("../controllers/userController");
+const { registerUser, loginUser, currentUser, deleteUser, updateUserInfo } = require("../controllers/userController");
 const router = express.Router();
 const validateToken = require("../middleware/validateTokenHandler")
 
 router.post("/register", registerUser);
 
 router.post("/login", loginUser);
+
+router.post("/update", updateUserInfo);
 
 router.get("/current", validateToken,currentUser);
 
