@@ -5,11 +5,11 @@ const Content = require('../models/contentModel');
 
 exports.editContent = async (req, res) => {
   try {
-    const { contentId, projectId, chapterId, content, links, images } = req.body;
+    const { contentId, projectId, chapterId, content, links, images, videos } = req.body;
 
     const updatedContent = await Content.findByIdAndUpdate(
       contentId,
-      { projectId, chapterId, content, links, images },
+      { projectId, chapterId, content, links, images, videos },
       { new: true }
     );
 
