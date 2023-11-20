@@ -21,6 +21,10 @@ const contentSchema = new mongoose.Schema({
   images: {
     type: String,
     default: "",
+  },
+  videos: {
+    type: String,
+    default: "",
   }
 }, {
   timestamps: true,

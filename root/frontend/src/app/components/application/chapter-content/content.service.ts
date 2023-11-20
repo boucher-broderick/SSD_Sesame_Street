@@ -44,18 +44,6 @@ export class ContentService {
     console.log('chapterId:', chapterId);
     contentId = contentId.replace(/['"]+/g, '');
     console.log('contentId:', contentId);
-    if (!content) { content = "" }
-    content = content.replace(/['"]+/g, '');
-    console.log('content:', content);
-    if (!links) { links = "" }
-    links = links.replace(/['"]+/g, '');
-    console.log('links:', links);
-    if (!images) { images = "" }
-    images = images.replace(/['"]+/g, '');
-    console.log('images: ', images);
-    if (!videos) { videos = "" }
-    videos = videos.replace(/['"]+/g, '');
-    console.log('videos: ', videos);
 
     return this.http.put<{message: string}>('http://localhost:5001/api/content/editContent', {contentId: contentId, projectId: projectId, chapterId: chapterId, content: content, links: links, images: images, videos: videos}).pipe(
       map((response: any) => {
