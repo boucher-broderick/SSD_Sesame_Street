@@ -51,10 +51,11 @@
     border: none;
     display: flex;
     justify-content: center;
-    margin-left: 5rem;
+    margin-left: 15rem;
     position: sticky;
     top: 0;
     margin-top: 0.7rem;
+    width: 10in;
     background-color: #F3F3F3;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
     transition: margin-left 0.5s ease;
@@ -78,13 +79,13 @@
     border: none;
     display: flex;
     justify-content: center;
-    transition: margin-left 0.5s ease;
-    margin-left: 14rem;
+    transition: margin-right 0.5s ease;
+    margin-right: 5rem;
 }
 
 .bottom-buttons {
     display: flex;
-    margin-left: 39rem;
+    margin-left: 38.5rem;
     transition: margin-left 0.5s ease;
 }
 
@@ -95,7 +96,7 @@
 
 .sidebar-open ::ng-deep .main .ql-container {
     margin-left:0;
-    margin-right:220px;
+    margin-right:570px;
 }
 
 .sidebar-open ::ng-deep .main .ql-toolbar {
@@ -104,14 +105,14 @@
 }
 
 .sidebar-open .bottom-buttons {
-    margin-left:22.5rem;
+    margin-left:23rem;
 }
 
 .menu-button {
     float: right;
     position: sticky;
     margin-right: 3rem;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
 }
 
 .sidePanelButton {
@@ -119,7 +120,7 @@
     position: sticky;
     float: right;
     margin-right: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
 }
 
 .images-panel {

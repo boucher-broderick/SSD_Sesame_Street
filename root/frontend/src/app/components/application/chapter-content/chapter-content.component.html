@@ -7,10 +7,12 @@
 </style>
 
 <p-toast class="toast" position="top-right" [baseZIndex]=10000></p-toast>
-<div class="title-container">
-    <h1 style="font-size: 40px" class="chapter-title">{{chapterNumber}} </h1>
-    <h1 style="font-size: 40px" class="chapter-title">{{chapterName}} </h1>
-    <p-overlayPanel #op [style]="{
+
+<div class="body">
+    <div class="title-container">
+        <h1 style="font-size: 40px" class="chapter-title">{{chapterNumber}} </h1>
+        <h1 style="font-size: 40px" class="chapter-title">{{chapterName}} </h1>
+        <p-overlayPanel #op [style]="{
         width: '500px',
         fontSize: '15px',
         border: '0.5px solid black',
@@ -18,10 +20,8 @@
     }">
         {{description}}
     </p-overlayPanel>
-    <p-button class="description-but" icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
-</div>
-
-<div class="body">
+        <p-button class="description-but" icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
+    </div>
     <div class="right-panel card flex justify-content-center">
         <p-splitButton class="menu-button" size="small" icon="pi pi-check" label="Save"  [model]="menuItems" (onClick)="onSave()" styleClass="p-button-raised p-button-info p-button-text mr-2 mb-2"></p-splitButton>
         <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true" [rounded]="true" [text]="true" severity="success"></p-button>
@@ -55,7 +55,7 @@
         </p-panel>
     </p-sidebar>
     <div class="editor-container" [ngClass]="{'sidebar-open': sidebarVisible}">
-        <quill-editor class="main" [(ngModel)]="text" [placeholder]="''" (onContentChanged)="onTextChange()"></quill-editor>
+        <p-editor class="main" [(ngModel)]="text" [placeholder]="''" (onTextChange)="onTextChange()"></p-editor>
         <div class="bottom-buttons">
             <p-button class="bot-chapters" icon="pi pi-arrow-left" label="Back" [rounded]="true" [text]="true" severity="secondary" [loading]="loading" (click)="redirectToChapters(); load()"></p-button>
             <p-button class="bot-save" icon="pi pi-check" label="Save" [rounded]="true" [text]="true" severity="info" [loading]="loading" (click)="onSave(); load()"></p-button>
