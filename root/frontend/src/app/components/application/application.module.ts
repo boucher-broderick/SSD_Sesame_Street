@@ -9,7 +9,6 @@ import { ApplicationComponent } from './application.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
-import { QuillEditorComponent } from "ngx-quill";
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelModule } from 'primeng/panel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -33,7 +32,6 @@ import { EditorModule } from "primeng/editor";
         ApplicationRoutingModule,
         RouterModule,
         PrimengModule,
-        QuillEditorComponent,
         SidebarModule,
         PanelModule,
         OverlayPanelModule,
