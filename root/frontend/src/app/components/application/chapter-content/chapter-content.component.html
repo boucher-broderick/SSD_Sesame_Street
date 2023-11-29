@@ -7,10 +7,12 @@
 </style>
 
 <p-toast class="toast" position="top-right" [baseZIndex]=10000></p-toast>
-<div class="title-container">
-    <h1 style="font-size: 40px" class="chapter-title">{{chapterNumber}} </h1>
-    <h1 style="font-size: 40px" class="chapter-title">{{chapterName}} </h1>
-    <p-overlayPanel #op [style]="{
+
+<div class="body" [ngClass]="{'sidebar-open': sidebarVisible}">
+    <div class="title-container">
+        <h1 style="font-size: 40px" class="chapter-title">{{chapterNumber}} </h1>
+        <h1 style="font-size: 40px" class="chapter-title">{{chapterName}} </h1>
+        <p-overlayPanel #op [style]="{
         width: '500px',
         fontSize: '15px',
         border: '0.5px solid black',
@@ -19,9 +21,18 @@
         {{description}}
     </p-overlayPanel>
     <p-button class="description-but" icon="pi pi-search" size="small" [rounded]="true" [text]="true" severity="info" (click)="op.toggle($event)" ></p-button>
-</div>
-
-<div class="body">
+        <ul>
+            <li class="redirect-projects" title="Go to projects" (click)="redirectToProjects()">
+                <i class="pi pi-folder-open" style="font-size: 1rem; color: #f5cf76"></i>
+                <span> Projects</span>
+            </li>
+            <li class="redirect-settings" title="Settings" (click)="redirectToSettings()">
+                <i class="pi pi-cog" style="font-size: 1rem; color: teal"></i>
+                <span> Settings</span>
+            </li>
+            <li class="redirect-home" title="Home" (click)="redirectToHome()"> <i class="pi pi-sign-out"></i> Log Out </li>
+        </ul>
+    </div>
     <div class="right-panel card flex justify-content-center">
         <p-splitButton class="menu-button" size="small" icon="pi pi-check" label="Save"  [model]="menuItems" (onClick)="onSave()" styleClass="p-button-raised p-button-info p-button-text mr-2 mb-2"></p-splitButton>
         <p-button class="sidePanelButton" icon="pi pi-image" (click)="sidebarVisible=true" [raised]="true" [rounded]="true" [text]="true" severity="success"></p-button>
@@ -54,11 +65,11 @@
             <textarea class="links" rows="5" cols="30" pInputTextarea (change)="onLinksChange()" [(ngModel)]="links"></textarea>
         </p-panel>
     </p-sidebar>
-    <div class="editor-container" [ngClass]="{'sidebar-open': sidebarVisible}">
-        <quill-editor class="main" [(ngModel)]="text" [placeholder]="''" (onContentChanged)="onTextChange()"></quill-editor>
-        <div class="bottom-buttons">
+    <div class="editor-container" >
+        <p-editor class="main" [(ngModel)]="text" [placeholder]="''" (onTextChange)="onTextChange()"></p-editor>
+    </div>
+    <div class="bottom-buttons">
             <p-button class="bot-chapters" icon="pi pi-arrow-left" label="Back" [rounded]="true" [text]="true" severity="secondary" [loading]="loading" (click)="redirectToChapters(); load()"></p-button>
             <p-button class="bot-save" icon="pi pi-check" label="Save" [rounded]="true" [text]="true" severity="info" [loading]="loading" (click)="onSave(); load()"></p-button>
         </div>
-    </div>
 </div>

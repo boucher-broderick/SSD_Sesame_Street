@@ -27,31 +27,37 @@ export class ChapterContentComponent {
     unsavedChanges: boolean = false;
 
 
-    constructor(private _router:Router, private contentService: ContentService, private messageService: MessageService) {
+    constructor(private _router: Router, private contentService: ContentService, private messageService: MessageService) {
         this.menuItems = [
-            { label: 'Chapters list', icon: 'pi pi-book',
-                command: () => { this.redirectToChapters(); }
+            {
+                label: 'Chapters list', icon: 'pi pi-book',
+                command: () => {
+                    this.redirectToChapters();
+                }
             },
-            { label: 'Projects list', icon: 'pi pi-folder',
-                command: () => { this.redirectToProjects(); }
+            {
+                label: 'Projects list', icon: 'pi pi-folder',
+                command: () => {
+                    this.redirectToProjects();
+                }
             },
         ];
     }
 
     // gets the ids from the session storage
-    ngOnInit(){
+    ngOnInit() {
         let id1 = sessionStorage.getItem("projectId");
-        if(id1) this.projectId= id1.replace(/['"]+/g, '')
+        if (id1) this.projectId = id1.replace(/['"]+/g, '')
         else this.projectId = '';
         let id2 = sessionStorage.getItem("chapterId");
-        if(id2) this.chapterId= id2.replace(/['"]+/g, '')
+        if (id2) this.chapterId = id2.replace(/['"]+/g, '')
         else this.chapterId = '';
 
         this.getContent();
     }
 
     // gets the content from the database
-    private getContent(){
+    private getContent() {
         this.contentService.getChapters(this.projectId).subscribe((data) => {
             console.log(data);
             for (var i = 0; i < data.length; i++) {
@@ -63,7 +69,7 @@ export class ChapterContentComponent {
                 }
             }
         })
-        this.contentService.getContent(this.projectId, this.chapterId).subscribe((data)=>{
+        this.contentService.getContent(this.projectId, this.chapterId).subscribe((data) => {
             console.log(data);
             this.contentId = data[0].contentId;
             this.text = data[0].content;
@@ -84,12 +90,12 @@ export class ChapterContentComponent {
     }
 
     // saves the content in the database
-    onSave(){
-        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images, this.videos).subscribe((data)=>{
+    onSave() {
+        this.contentService.editContent(this.contentId, this.projectId, this.chapterId, this.text, this.links, this.images, this.videos).subscribe((data) => {
             console.log(data);
         })
         this.unsavedChanges = false;
-        this.messageService.add({ severity: "success", summary: 'Success', detail: 'Content is saved successfully' });
+        this.messageService.add({severity: "success", summary: 'Success', detail: 'Content is saved successfully'});
     }
 
     // deals with the loading animation
@@ -101,12 +107,20 @@ export class ChapterContentComponent {
     }
 
     // change screens
-    redirectToChapters(){
+    redirectToChapters() {
         this._router.navigate(['application/chapters']);
     }
-    redirectToProjects(){
+
+    redirectToProjects() {
         this._router.navigate(['application/']);
     }
 
-}
+    redirectToHome() {
+        sessionStorage.clear();
+        this._router.navigate(['home']);
+    }
 
+    redirectToSettings() {
+        this._router.navigate(['application/settings']);
+    }
+}

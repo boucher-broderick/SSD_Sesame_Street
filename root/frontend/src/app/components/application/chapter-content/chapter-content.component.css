@@ -26,7 +26,8 @@
 .body {
     z-index: 0;
     position: relative;
-    background-color: #F3F3F3;
+    background: rgb(255,255,255);
+    background: radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(225,225,255,0.45152321182379207) 100%);
 }
 
 .title-container {
@@ -51,14 +52,14 @@
     border: none;
     display: flex;
     justify-content: center;
-    margin-left: 5rem;
     position: sticky;
     top: 0;
     margin-top: 0.7rem;
-    background-color: #F3F3F3;
+    width: 10in;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
     transition: margin-left 0.5s ease;
     z-index: 1;
+    margin-left:3rem;
 }
 
 ::ng-deep .main .ql-editor {
@@ -79,12 +80,19 @@
     display: flex;
     justify-content: center;
     transition: margin-left 0.5s ease;
-    margin-left: 14rem;
+    width: 9.5in;
+    margin-left:5rem;
+}
+
+.editor-container {
+    margin-left:11rem;
+    width:11in;
+    transition: margin-left 0.5s ease;
 }
 
 .bottom-buttons {
     display: flex;
-    margin-left: 39rem;
+    margin-left: 38.5rem;
     transition: margin-left 0.5s ease;
 }
 
@@ -95,7 +103,7 @@
 
 .sidebar-open ::ng-deep .main .ql-container {
     margin-left:0;
-    margin-right:220px;
+    margin-right:570px;
 }
 
 .sidebar-open ::ng-deep .main .ql-toolbar {
@@ -103,15 +111,19 @@
     margin-right:20px;
 }
 
+.sidebar-open .editor-container {
+    margin-left: 20px;
+}
+
 .sidebar-open .bottom-buttons {
-    margin-left:22.5rem;
+    margin-left:23rem;
 }
 
 .menu-button {
     float: right;
     position: sticky;
     margin-right: 3rem;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
 }
 
 .sidePanelButton {
@@ -119,7 +131,7 @@
     position: sticky;
     float: right;
     margin-right: 1rem;
-    margin-top: 0.5rem;
+    margin-top: 0.1rem;
 }
 
 .images-panel {
@@ -157,4 +169,42 @@
 ::ng-deep .ql-tooltip {
     white-space: normal;
     margin-left: 8rem;
+}
+
+ul {
+    margin-left: 23.5rem;
+    margin-top: 0;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 0 0 30px;
+    position: relative;
+}
+
+ul li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+
+ul li::after {
+    content: "";
+    height: 3px;
+    width: 0;
+    background: #CBC3E3;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+ul li:hover::after {
+    width: 100%;
+}
+
+
+ul li:hover {
+    cursor:pointer;
 }
