@@ -172,8 +172,9 @@
 }
 
 ul {
-    margin-left: 23.5rem;
-    margin-top: 0;
+    float: right;
+    margin-top: 2rem;
+    margin-right: 2rem;
 }
 
 ul li {

@@ -4,7 +4,7 @@ import { HomeService } from '../home.service';
 @Component({
   selector: 'app-home-body',
   templateUrl: './home-body.component.html',
-  styleUrls: ['./home-body.component.css']
+  styleUrls: ['./home-body.component.css'],
 })
 export class HomeBodyComponent {
   public screen: number = 0;
@@ -17,5 +17,12 @@ export class HomeBodyComponent {
       this.screen = screen;
     }
     )
+  }
+
+  showSignUpWindow = false;
+  signInVisible = false;
+  toggleSignUpWindow() {
+    this.showSignUpWindow = !this.showSignUpWindow;
+    this.signInVisible = this.showSignUpWindow;
   }
 }

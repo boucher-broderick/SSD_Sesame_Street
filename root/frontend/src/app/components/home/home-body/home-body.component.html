@@ -1,10 +1,18 @@
 <div class="content">
-    <div class="container">
+    <div class="container" *ngIf="showSignUpWindow">
         <div *ngIf="screen==0">
             <app-sign-in></app-sign-in>
         </div>
         <div *ngIf="screen==1">
             <app-sign-up></app-sign-up>
         </div>
+    </div>
+    <div class="slogan" *ngIf="!showSignUpWindow">
+        <h1>EXPLORE YOUR CREATIVE JOURNEY</h1>
+    </div>
+    <div class="start-but" *ngIf="!showSignUpWindow">
+        <p-button class="get-started-but" [rounded]="true" (click)="toggleSignUpWindow()">
+            <span class="ml-2" style="font-weight:bold;">GET STARTED</span>
+        </p-button>
     </div>
 </div>

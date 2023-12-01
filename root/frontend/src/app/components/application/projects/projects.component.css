@@ -8,8 +8,24 @@
     margin-left: .5rem;
 }
 
-.container{
-    margin: 1rem;
+.container {
+    margin: 0.5rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
 }
+
+.body {
+    background: url("../../../../assets/images/bg4.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height:39.2rem;
+    margin:0;
+}
+
+th {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+}
+
+

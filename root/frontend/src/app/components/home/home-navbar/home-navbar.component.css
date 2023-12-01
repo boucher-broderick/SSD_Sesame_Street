@@ -36,8 +36,16 @@
     width: 100%;
 }
 
-
 .navbar ul li:hover {
     cursor:pointer;
 }
 
+h2 {
+
+}
+
+.logo {
+    top: 8px;
+    right: 7px;
+    position: relative;
+}

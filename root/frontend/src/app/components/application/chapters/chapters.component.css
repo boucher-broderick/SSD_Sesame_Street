@@ -9,8 +9,20 @@
 }
 
 .container{
-    margin: 1rem;
+    margin: 0.25rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
 }
 
+.body {
+    background: url("../../../../assets/images/bg3.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height:39.5rem;
+}
+
+th {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+}

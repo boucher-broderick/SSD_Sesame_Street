@@ -1,14 +1,31 @@
-.content {
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.slogan {
     width: 100%;
-    height:75%;
+    height: 60%;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: 1s ease-out 0s 1 slideInFromLeft;
 }
 
-.content h1 {
-    font-size: 55px;
+.slogan h1 {
+    font-size: 50px;
+    margin-right: 250px;
+    margin-top: 100px
 }
 
 .content p {
@@ -20,11 +37,24 @@
 
 .title-buttons button{
     margin: .5rem;
+    opacity: 1;
 }
 
-.container{
+.container {
     width: 50%;
     height: min-content;
     background-color: aliceblue;
     border-radius: 20px;
+    opacity: 1;
+    margin-left: 24rem;
+    margin-top: 2rem;
+    animation: fadeIn 2s;
+}
+
+.get-started-but {
+    position: relative;
+    left:42rem;
+    top: 6rem;
+    opacity:0;
+    animation: fadeIn 3s ease-in-out 0.5s forwards;
 }
