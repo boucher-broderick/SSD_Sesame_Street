@@ -4,11 +4,14 @@ import { Table } from 'primeng/table';
 import { Chapter } from 'src/app/models/chapter';
 import { TableColumns } from 'src/app/models/table-columns';
 import { ChaptersService } from './chapters.service';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-chapters',
   templateUrl: './chapters.component.html',
-  styleUrls: ['./chapters.component.css']
+  styleUrls: ['./chapters.component.css'],
+  providers: [MessageService]
 })
 export class ChaptersComponent {
 
@@ -22,7 +25,7 @@ export class ChaptersComponent {
 
   @ViewChild(Table) private table!: Table;
 
-  constructor(private _router:Router, private chaptersService: ChaptersService) { }
+  constructor(private _router:Router, private chaptersService: ChaptersService, private messageService: MessageService) { }
 
   // gets ids from session
   ngOnInit() {
@@ -238,5 +241,6 @@ export class ChaptersComponent {
   }
   performAction() {
     this.deleteChapter();
+    this.messageService.add({severity: "warn", summary: 'Deleted', detail: 'chapter deleted'});
   }
 }

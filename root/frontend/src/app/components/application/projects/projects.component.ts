@@ -190,7 +190,7 @@ export class ProjectsComponent {
     ]
   }
   confirm_and_delete() {
-    var result = confirm("Are you sure you want to delete this project?");
+    var result = confirm("Are you sure you want to delete this project?\n\nThis action cannot be undone");
     if (result) {
       this.performAction();
     } else {
@@ -198,6 +198,7 @@ export class ProjectsComponent {
   }
   performAction() {
     this.deleteProject();
+    this.messageService.add({severity: "warn", summary: 'Deleted', detail: 'project deleted'});
   }
 }
 
