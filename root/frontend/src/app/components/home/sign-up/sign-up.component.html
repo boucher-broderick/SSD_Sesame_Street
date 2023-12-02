@@ -1,5 +1,5 @@
 <div class="container">
-    <h2 style="color:black; margin-bottom:4%">Sign Up</h2>
+    <h2 style="color:black; margin-bottom:4%">Create an account</h2>
     <div style="width:90%; margin-bottom:3%; display: flex; justify-content: center;">
         <input type="text" pInputText  [(ngModel)]="username" placeholder="Username"  style="width:45%; margin-right:5%"/>
         <input type="text" pInputText  [(ngModel)]="email" placeholder="Email"  style="width:45%"/>
@@ -9,5 +9,5 @@
         <input type="text" pInputText  [(ngModel)]="retypePassword" placeholder="Retype Password"  style="width:45%;"/>
     </div>
     <p-toast></p-toast>
-    <button pButton (click)="signUp()">Sign Up</button>
+    <p-button (click)="signUp()" severity="success">Sign Up</p-button>
 </div>

@@ -9,7 +9,6 @@ import { ApplicationComponent } from './application.component';
 import { ApplicationRoutingModule } from './application-routing.module';
 import { RouterModule } from '@angular/router';
 import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
-import { QuillEditorComponent } from "ngx-quill";
 import { SidebarModule } from 'primeng/sidebar';
 import { PanelModule } from 'primeng/panel';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
@@ -18,6 +17,7 @@ import { ToastModule } from "primeng/toast";
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from "primeng/editor";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -33,7 +33,6 @@ import { EditorModule } from "primeng/editor";
         ApplicationRoutingModule,
         RouterModule,
         PrimengModule,
-        QuillEditorComponent,
         SidebarModule,
         PanelModule,
         OverlayPanelModule,
@@ -42,7 +41,8 @@ import { EditorModule } from "primeng/editor";
         InputTextModule,
         InputTextareaModule,
         NgOptimizedImage,
-        EditorModule
+        EditorModule,
+        ConfirmDialogModule
     ]
 })
 export class ApplicationModule { }

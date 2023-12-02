@@ -1,14 +1,17 @@
+<link href="https://fonts.cdnfonts.com/css/tex-gyre-schola" rel="stylesheet">
 <div>
     <nav class="navbar" style="justify-content: space-between; display: flex; align-items: center; padding: 10px;">
-        <!-- <div>
-            <img src="https://cdn.glitch.global/b9a75b23-446b-41bd-92bb-ac7aa49f98b2/StorytellerLogo.jpg?v=1697644998554" width="70px" > 
-        </div> -->
-        
-    <h2 >StoryTeller Studio</h2>
+        <h2><img ngSrc="../../../../assets/images/logo.png" height="25" width="30" alt="logo" /> StoryTeller Studio</h2>
         <ul>
-            <li (click)="redirectToProjects()"> Projects</li>
-            <li (click)="redirectToSettings()"> Settings</li>
-            <li (click)="redirectToHome()"> Log Out</li>
+            <li class="redirect-projects" title="Go to projects" (click)="redirectToProjects()">
+                <i class="pi pi-folder-open" style="font-size: 1rem"></i>
+                <span> Projects</span>
+            </li>
+            <li class="redirect-settings" title="Settings" (click)="redirectToSettings()">
+                <i class="pi pi-cog" style="font-size: 1rem"></i>
+                <span> Settings</span>
+            </li>
+            <li class="redirect-home" title="Home" (click)="redirectToHome()"> <i class="pi pi-sign-out"></i> Log Out </li>
         </ul>
     </nav>
 </div>

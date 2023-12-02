@@ -10,8 +10,6 @@ import { AppComponent } from './app.component';
 import { TestComponent } from './components/test/test.component';
 import { HomeModule } from './components/home/home.module';
 import { PrimengModule } from './shared/modules/primeng/primeng.module';
-
-import { QuillModule } from 'ngx-quill';
 import { ErrorPageComponent } from './components/error-page/error-page.component';
 
 
@@ -29,7 +27,6 @@ import { ErrorPageComponent } from './components/error-page/error-page.component
     HomeModule,
     PrimengModule,
     ApplicationModule,
-    QuillModule.forRoot(),
     BrowserAnimationsModule,
     SidebarModule
   ],

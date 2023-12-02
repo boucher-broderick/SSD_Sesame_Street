@@ -1,7 +1,18 @@
+.navbar {
+    background-color: #F3F3F3;
+    margin: 0 0.2rem 0 0;
+    height: 3rem;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+}
+
+.navbar ul {
+    margin-right: 1rem;
+}
+
 .navbar ul li {
     list-style: none;
     display: inline-block;
-    margin: 0 20px;
+    margin: 0 0 0 30px;
     position: relative;
 }
 
@@ -15,7 +26,7 @@
     content: "";
     height: 3px;
     width: 0;
-    background: orange;
+    background: #58A4B0;
     position: absolute;
     left: 0;
     bottom: -8px;
@@ -31,3 +42,27 @@
     cursor:pointer;
 }
 
+.pi-folder-open {
+    color: #f5cf76;
+}
+
+.pi-cog {
+    color: teal;
+}
+
+.redirect-home {
+    margin-right: 5rem;
+}
+
+h2 {
+  position: relative;
+  left: 10px;
+  bottom: 3px;
+  font-family: 'Gill Sans', sans-serif;
+}
+
+img {
+    position: relative;
+    top: 6.5px;
+    margin-right: 5px;
+}
