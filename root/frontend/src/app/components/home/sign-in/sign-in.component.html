@@ -3,5 +3,5 @@
     <input type="text" pInputText   [(ngModel)]="email" placeholder="Email"  style="width:70%; margin-bottom:3%"/>
     <input type="text" pInputText   [(ngModel)]="password" placeholder="Password"  style="width:70%; margin-bottom:5%"/>
     <p-toast></p-toast>
-    <button pButton (click)="load(); signIn()" [loading]="loading">Sign In</button>
+    <p-button (click)="load(); signIn()" severity= "help" [loading]="loading">Sign In</p-button>
 </div>

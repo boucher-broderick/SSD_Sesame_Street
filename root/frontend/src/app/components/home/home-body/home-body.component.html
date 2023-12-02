@@ -1,5 +1,20 @@
+<nav>
+    <div class="navbar" style="color: white">
+        <h2>
+            <a href="/" title="Go to Homepage">
+                <img class="logo" src="../../assets/images/logo2.png" style="height:30px;width:30px;">
+            </a>
+            StoryTeller Studio
+        </h2>
+        <ul>
+            <li (click)="changeScreen(0); toggleSignUpWindow()">Sign In</li>
+            <li (click)="changeScreen(1); toggleSignUpWindow()">Sign Up</li>
+        </ul>
+    </div>
+</nav>
+
 <div class="content">
-    <div class="container" *ngIf="showSignUpWindow">
+    <div class="container" *ngIf="showSignUpWindow" >
         <div *ngIf="screen==0">
             <app-sign-in></app-sign-in>
         </div>
@@ -10,9 +25,27 @@
     <div class="slogan" *ngIf="!showSignUpWindow">
         <h1>EXPLORE YOUR CREATIVE JOURNEY</h1>
     </div>
-    <div class="start-but" *ngIf="!showSignUpWindow">
-        <p-button class="get-started-but" [rounded]="true" (click)="toggleSignUpWindow()">
-            <span class="ml-2" style="font-weight:bold;">GET STARTED</span>
-        </p-button>
+    <div class="galleria" *ngIf="!showSignUpWindow">
+        <p-galleria [value]="images" [numVisible]="5" [autoPlay]="true" [circular]="true" [showItemNavigators]="true" [showThumbnails]="false" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '475px' }">
+            <ng-template pTemplate="item" let-item>
+                <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+            </ng-template>
+        </p-galleria>
+    </div>
+    <div class="cool" *ngIf="!showSignUpWindow">
+        <div class="description">
+            <p>{{description}}</p>
+        </div>
+        <div class="buttons" *ngIf="!showSignUpWindow">
+            <p-button class="get-started-but" severity= "help" [rounded]="false" (click)="toggleSignUpWindow()">
+                <span class="ml-2" style="font-weight:bold;color:#FFFFFF">GET STARTED</span>
+            </p-button>
+            <p-button class="other-but" [outlined]="true"  severity="secondary" [rounded]="false" (click)="redirectToDoc()">
+                <span class="ml-2" style="font-weight:bold; color:#FFFFFF">
+                    <i class="pi pi-github"></i>
+                    GitHub
+                </span>
+            </p-button>
+        </div>
     </div>
 </div>
