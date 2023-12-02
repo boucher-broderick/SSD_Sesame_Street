@@ -9,18 +9,20 @@
 }
 
 .container{
-    margin: 0.25rem;
+    position: relative;
+    top: 1rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
 }
 
 .body {
-    background: url("../../../../assets/images/bg3.jpg") no-repeat center center fixed;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.75)), url("../../../../assets/images/background/bg3.jpg");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    min-height:39.5rem;
+    min-height:40.3rem;
+    margin-top:0.1rem;
 }
 
 th {

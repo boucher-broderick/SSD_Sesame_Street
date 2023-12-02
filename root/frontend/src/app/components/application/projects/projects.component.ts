@@ -4,7 +4,7 @@ import { Table } from 'primeng/table';
 import { Project } from 'src/app/models/project';
 import { TableColumns } from 'src/app/models/table-columns';
 import { ProjectsService } from './projects.service';
-import { MessageService } from 'primeng/api';
+import { MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-projects',
@@ -119,7 +119,7 @@ export class ProjectsComponent {
   }
 
   // when the user deletes a project
-  deleteProject(){
+  private deleteProject(){
     if(this.editing == false){
       this.projectsService.deleteProject(this.selectedProject.projectId).subscribe((data)=>{
         console.log(data);
@@ -189,6 +189,15 @@ export class ProjectsComponent {
     },
     ]
   }
-
+  confirm_and_delete() {
+    var result = confirm("Are you sure you want to delete this project?");
+    if (result) {
+      this.performAction();
+    } else {
+    }
+  }
+  performAction() {
+    this.deleteProject();
+  }
 }
 

@@ -7,7 +7,7 @@
             <div>
                 <button pButton [disabled]="editing || projects.length == 0" (click)="redirectToChapters()">Chapters List</button>
                 <button pButton [disabled]="editing"(click)="createProject()">New</button>
-                <button pButton [disabled]="projects.length == 0" (click)="deleteProject()">Delete</button>
+                <button pButton id="deleteButton" [disabled]="projects.length == 0" (click)="confirm_and_delete()">Delete</button>
             </div>
         </div>
 
@@ -50,4 +50,7 @@
             </ng-template>
         </p-table>
     </div>
+    <script>
+
+    </script>
 </div>

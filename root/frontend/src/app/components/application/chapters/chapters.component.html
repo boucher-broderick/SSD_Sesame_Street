@@ -7,7 +7,7 @@
                 <button pButton  (click)="redirectToProjects()">Projects List</button>
                 <button pButton [disabled]="editing || chapters.length == 0" (click)="redirectToContent()">Chapter Content</button>
                 <button pButton [disabled]="editing"(click)="createChapter()">New</button>
-                <button pButton [disabled]="chapters.length == 0" (click)="deleteProject()">Delete</button>
+                <button pButton [disabled]="chapters.length == 0" (click)="confirm_and_delete()">Delete</button>
             </div>
         </div>
 

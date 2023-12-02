@@ -116,7 +116,7 @@ export class ChaptersComponent {
   }
 
   // when the user deletes a chpater
-  deleteProject(){
+  private deleteChapter(){
     if(this.editing == false){
       this.chaptersService.deleteChapter(this.selectedChapter.chapterId).subscribe((data)=>{
         console.log(data);
@@ -229,4 +229,14 @@ export class ChaptersComponent {
     return (highest+1);
   }
 
+  confirm_and_delete() {
+    var result = confirm("Are you sure you want to delete this chapter");
+    if (result) {
+      this.performAction();
+    } else {
+    }
+  }
+  performAction() {
+    this.deleteChapter();
+  }
 }

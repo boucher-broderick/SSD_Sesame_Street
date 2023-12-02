@@ -10,7 +10,7 @@ import { PhotoService } from '../photo.service';
 export class HomeBodyComponent implements OnInit {
   images: any[] | undefined;
   responsiveOptions: any[] | undefined;
-  description = "a writer's planning tool that helps to gather and organize inspiration in the form of notes, links, songs, images, and many else.";
+  description = "StoryTeller Studio is a writer's planning tool that helps to gather and organize inspiration in the form of notes, links, songs, images, and many else.";
   public screen: number = 0;
 
   constructor(private homeService: HomeService, private photoService: PhotoService){}
