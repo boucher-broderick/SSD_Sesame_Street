@@ -7,7 +7,8 @@ import { PrimengModule } from 'src/app/shared/modules/primeng/primeng.module';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MessageService } from 'primeng/api';
-import {ToastModule} from "primeng/toast";
+import { ToastModule } from "primeng/toast";
+import { GalleriaModule } from 'primeng/galleria';
 
 
 
@@ -26,7 +27,8 @@ import {ToastModule} from "primeng/toast";
         CommonModule,
         PrimengModule,
         NgOptimizedImage,
-        ToastModule
+        ToastModule,
+        GalleriaModule
     ]
 })
 export class HomeModule { }

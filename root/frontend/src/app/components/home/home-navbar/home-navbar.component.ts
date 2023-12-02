@@ -17,6 +17,5 @@ export class HomeNavbarComponent {
   changeScreen(screen: number){
     this.homeService.changeComponent(screen);
   }
-
 }
 

@@ -8,8 +8,26 @@
     margin-left: .5rem;
 }
 
-.container{
-    margin: 1rem;
+.container {
+    position:relative;
+    top:1rem;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
 }
+
+.body {
+    background-image: radial-gradient(circle, rgba(255,255,255,0.5), rgba(255,255,255,0.75)), url("../../../../assets/images/background/bg2.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height:40.3rem;
+    position: relative;
+    margin-top:0.1rem;
+}
+
+th {
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
+}
+
+

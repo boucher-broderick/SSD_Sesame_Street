@@ -26,8 +26,12 @@
 .body {
     z-index: 0;
     position: relative;
-    background: rgb(255,255,255);
-    background: radial-gradient(circle, rgba(255,255,255,1) 55%, rgba(225,225,255,0.45152321182379207) 100%);
+    background-image: radial-gradient(circle, rgba(255,255,255,0.25), rgba(255,255,255,0.5)), url("../../../../assets/images/background/bg1.jpg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: relative;
 }
 
 .title-container {
@@ -172,8 +176,9 @@
 }
 
 ul {
-    margin-left: 23.5rem;
-    margin-top: 0;
+    float: right;
+    margin-top: 2rem;
+    margin-right: 2rem;
 }
 
 ul li {

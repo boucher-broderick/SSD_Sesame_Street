@@ -4,11 +4,14 @@ import { Table } from 'primeng/table';
 import { Chapter } from 'src/app/models/chapter';
 import { TableColumns } from 'src/app/models/table-columns';
 import { ChaptersService } from './chapters.service';
+import { MessageService } from 'primeng/api';
+
 
 @Component({
   selector: 'app-chapters',
   templateUrl: './chapters.component.html',
-  styleUrls: ['./chapters.component.css']
+  styleUrls: ['./chapters.component.css'],
+  providers: [MessageService]
 })
 export class ChaptersComponent {
 
@@ -22,7 +25,7 @@ export class ChaptersComponent {
 
   @ViewChild(Table) private table!: Table;
 
-  constructor(private _router:Router, private chaptersService: ChaptersService) { }
+  constructor(private _router:Router, private chaptersService: ChaptersService, private messageService: MessageService) { }
 
   // gets ids from session
   ngOnInit() {
@@ -116,7 +119,7 @@ export class ChaptersComponent {
   }
 
   // when the user deletes a chpater
-  deleteProject(){
+  private deleteChapter(){
     if(this.editing == false){
       this.chaptersService.deleteChapter(this.selectedChapter.chapterId).subscribe((data)=>{
         console.log(data);
@@ -229,4 +232,15 @@ export class ChaptersComponent {
     return (highest+1);
   }
 
+  confirm_and_delete() {
+    var result = confirm("Are you sure you want to delete this chapter");
+    if (result) {
+      this.performAction();
+    } else {
+    }
+  }
+  performAction() {
+    this.deleteChapter();
+    this.messageService.add({severity: "warn", summary: 'Deleted', detail: 'chapter deleted'});
+  }
 }

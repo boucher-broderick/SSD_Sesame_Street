@@ -26,7 +26,7 @@
     content: "";
     height: 3px;
     width: 0;
-    background: #CBC3E3;
+    background: #58A4B0;
     position: absolute;
     left: 0;
     bottom: -8px;
@@ -58,7 +58,7 @@ h2 {
   position: relative;
   left: 10px;
   bottom: 3px;
-  font-family: "New Century Schoolbook, TeX Gyre Schola", serif;
+  font-family: 'Gill Sans', sans-serif;
 }
 
 img {

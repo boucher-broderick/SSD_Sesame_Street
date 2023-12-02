@@ -17,6 +17,7 @@ import { ToastModule } from "primeng/toast";
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditorModule } from "primeng/editor";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { EditorModule } from "primeng/editor";
         InputTextModule,
         InputTextareaModule,
         NgOptimizedImage,
-        EditorModule
+        EditorModule,
+        ConfirmDialogModule
     ]
 })
 export class ApplicationModule { }
