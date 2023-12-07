@@ -61,9 +61,7 @@
     margin-top: 0.7rem;
     width: 10in;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-    transition: margin-left 0.5s ease;
     z-index: 1;
-    margin-left:3rem;
 }
 
 ::ng-deep .main .ql-editor {
@@ -83,15 +81,13 @@
     border: none;
     display: flex;
     justify-content: center;
-    transition: margin-left 0.5s ease;
     width: 9.5in;
-    margin-left:5rem;
+    margin-left:1.5rem;
 }
 
 .editor-container {
-    margin-left:11rem;
-    width:11in;
-    transition: margin-left 0.5s ease;
+    transition: margin-left 0.75s ease;
+    margin-left: 14rem;
 }
 
 .bottom-buttons {
@@ -105,18 +101,8 @@
     justify-content: center;
 }
 
-.sidebar-open ::ng-deep .main .ql-container {
-    margin-left:0;
-    margin-right:570px;
-}
-
-.sidebar-open ::ng-deep .main .ql-toolbar {
-    margin-left:0;
-    margin-right:20px;
-}
-
 .sidebar-open .editor-container {
-    margin-left: 20px;
+    margin-left:0;
 }
 
 .sidebar-open .bottom-buttons {
