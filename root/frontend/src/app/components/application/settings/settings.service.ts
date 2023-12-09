@@ -12,7 +12,7 @@ export class SettingsService {
 
   constructor(private http: HttpClient) { }
 
-
+  // chanes the user info
   editUserInto(id:string, type: string, change: string): Observable<any>{
     id = id.replace(/['"]+/g, '');
     var req = {

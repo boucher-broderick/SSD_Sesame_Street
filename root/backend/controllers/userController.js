@@ -46,18 +46,6 @@ const loginUser = expressAsyncHandler(async(req, res) =>{
     const user = await User.findOne({ email });
     // Compare password with hashed password
     if(user && (await bcrypt.compare(password, user.password))){
-        //Provide access tokens
-        // const accessToken = jwt.sign({
-        //     user:{
-        //         username: user.username,
-        //         email: user.email,
-        //         id: user.id,
-        //     },
-        // }, 
-        // //process.env.ACCESS_TOKEN_SECRET,
-        // {expiresIn: "1m"}
-        // );
-        //res.status(200).json({accessToken})
         res.status(200).json({ status:200, _id: user.id, email: user.email});
     }
     else{
