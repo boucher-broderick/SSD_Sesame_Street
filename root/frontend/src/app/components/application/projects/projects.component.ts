@@ -119,7 +119,7 @@ export class ProjectsComponent {
   }
 
   // when the user deletes a project
-  private deleteProject(){
+ deleteProject(){
     if(this.editing == false){
       this.projectsService.deleteProject(this.selectedProject.projectId).subscribe((data)=>{
         console.log(data);

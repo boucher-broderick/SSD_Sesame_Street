@@ -119,7 +119,7 @@ export class ChaptersComponent {
   }
 
   // when the user deletes a chpater
-  private deleteChapter(){
+   deleteChapter(){
     if(this.editing == false){
       this.chaptersService.deleteChapter(this.selectedChapter.chapterId).subscribe((data)=>{
         console.log(data);
